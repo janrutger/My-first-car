@@ -1,17 +1,19 @@
 from random import randrange
-from types import prepare_class
+import os.path as path
+#from types import prepare_class
 
 def scanDistance():
-    dLeft  = randrange(100)
-    dFront = randrange(100)
-    dRight = randrange(100)
+    maxrand = 75
+    dLeft  = randrange(maxrand)
+    dFront = randrange(maxrand)
+    dRight = randrange(maxrand)
 
     return(dLeft, dFront, dRight)
 
 def evalDistance(dLeft, dFront, dRight):
-    if dFront < 20:
+    if dFront <= 20:
         return("back")
-    if dFront > 50:
+    if dFront >= 50:
         return("forward")
     else:
         if dFront <= 30:
@@ -26,7 +28,12 @@ def evalDistance(dLeft, dFront, dRight):
                 return("left")
 
 def writeResult(dLeft, dFront, dRight, driveCommand):
-    f = open("randomdrive/randomdrive.txt", "a")
+    if not path.isfile('randomdrive.txt'):
+        f = open("randomdrive.txt", "a")
+        f.writelines(["left, front, right,command", "\n"])
+        f.close()
+
+    f = open("randomdrive.txt", "a")
     f.writelines([str(dLeft),",", str(dFront),",", str(dRight),",", driveCommand, "\n"])
     f.close()
 

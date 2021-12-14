@@ -25,7 +25,7 @@ def makeModel(type, X, y):
         accuracy = thisModel.score(X_test, y_test)
         print(accuracy)
     else:
-        thisModel = KNeighborsClassifier(n_neighbors = 7).fit(X_train, y_train)
+        thisModel = KNeighborsClassifier(n_neighbors = 21).fit(X_train, y_train)
         # accuracy on X_test
         accuracy = thisModel.score(X_test, y_test)
         print(accuracy)
@@ -61,11 +61,11 @@ def main():
     X, y = procesData(data)
 
     My_Model = makeModel("svc", X, y)
-    My_test = [[75, 30, 80], [80, 55, 20], [80, 20, 75]]
+    My_test = [[75, 30, 80], [80, 55, 20], [80, 20, 75], [88, 40, 75]]
     My_predictions = My_Model.predict(My_test)
     print(My_test)
     print(My_predictions)
-    plotData(data)
+    #plotData(data)
 
     
 if __name__ == "__main__":

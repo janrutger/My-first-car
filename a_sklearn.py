@@ -8,7 +8,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 def readFile():
-    
     data = pd.read_csv('randomdrive.txt', header=0)
     return(data)
 

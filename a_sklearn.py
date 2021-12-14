@@ -8,8 +8,8 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 def readFile():
-    #data = np.loadtxt('randomdrive/randomdrive.txt', delimiter=',')
-    data = pd.read_csv('randomdrive/randomdrive.txt', header=0)
+    
+    data = pd.read_csv('randomdrive.txt', header=0)
     return(data)
 
 def procesData(data):
@@ -43,7 +43,7 @@ def plotData(data):
 
     for n in range(len(command)):
         if command[n] == 'spin_left':
-            ax.scatter(yax[n], zax[n], xax[n], color='c')
+            ax.scatter(xax[n], yax[n], zax[n], color='c')
         if command[n] == 'left':
             ax.scatter(xax[n], yax[n], zax[n], color='b')
         if command[n] == 'forward':
@@ -51,9 +51,9 @@ def plotData(data):
         if command[n] == 'right':
             ax.scatter(xax[n], yax[n], zax[n], color='g')
         if command[n] == 'spin_right':
-            ax.scatter(xax[n], zax[n], yax[n], color='y') 
+            ax.scatter(xax[n], yax[n], zax[n], color='y') 
         if command[n] == 'back':
-            ax.scatter(yax[n], zax[n], xax[n], color='k')
+            ax.scatter(xax[n], yax[n], zax[n], color='k')
     plt.show()
 
 def main():

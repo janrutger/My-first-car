@@ -3,7 +3,7 @@ import os.path as path
 #from types import prepare_class
 
 def scanDistance():
-    maxrand = 100
+    maxrand = 200
     dLeft  = randrange(maxrand)
     dFront = randrange(maxrand)
     dRight = randrange(maxrand)
@@ -13,19 +13,34 @@ def scanDistance():
 def evalDistance(dLeft, dFront, dRight):
     if dFront <= 20:
         return("back")
-    if dFront >= 50:
-        return("forward")
-    else:
-        if dFront <= 30:
-            if dLeft <= dRight:
-                return("spin_right")
-            else:
-                return("spin_left")
+    elif dFront <= 30:
+        if dLeft <= dRight:
+            return("spin_right")
         else:
-            if dLeft <= dRight:
-                return("right")
-            else:
-                return("left")
+            return("spin_left")
+    elif dFront <= 50:
+        if dLeft <= dRight:
+            return("right")
+        else:
+            return("left")
+    elif dFront > 50:
+        return("forward")
+
+    # if dFront <= 20:
+    #     return("back")
+    # if dFront >= 50:
+    #     return("forward")
+    # else:
+    #     if dFront <= 30:
+    #         if dLeft <= dRight:
+    #             return("spin_right")
+    #         else:
+    #             return("spin_left")
+    #     else:
+    #         if dLeft <= dRight:
+    #             return("right")
+    #         else:
+    #             return("left")
 
 def writeResult(dLeft, dFront, dRight, driveCommand):
     if not path.isfile('randomdrive.txt'):

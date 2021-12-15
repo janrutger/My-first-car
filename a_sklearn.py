@@ -6,9 +6,12 @@ from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+from random import randrange
+
 
 def readFile():
     data = pd.read_csv('randomdrive.txt', header=0)
+
     return(data)
 
 def procesData(data):
@@ -61,7 +64,7 @@ def main():
     X, y = procesData(data)
 
     My_Model = makeModel("svc", X, y)
-    My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75]]
+    My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75], [randrange(200),randrange(200),randrange(200)]]
     My_predictions = My_Model.predict(My_test)
     print(My_test)
     print(My_predictions)

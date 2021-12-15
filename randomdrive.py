@@ -3,7 +3,7 @@ import os.path as path
 #from types import prepare_class
 
 def scanDistance():
-    maxrand = 75
+    maxrand = 100
     dLeft  = randrange(maxrand)
     dFront = randrange(maxrand)
     dRight = randrange(maxrand)
@@ -30,16 +30,15 @@ def evalDistance(dLeft, dFront, dRight):
 def writeResult(dLeft, dFront, dRight, driveCommand):
     if not path.isfile('randomdrive.txt'):
         f = open("randomdrive.txt", "a")
-        f.writelines(["left, front, right,command", "\n"])
-        f.close()
-
-    f = open("randomdrive.txt", "a")
+        f.writelines(["left,front,right,command", "\n"])
+    else:
+        f = open("randomdrive.txt", "a")
     f.writelines([str(dLeft),",", str(dFront),",", str(dRight),",", driveCommand, "\n"])
     f.close()
 
 
 def main():
-    count = 2000
+    count = 400
     while count > 0:
 
         dLeft, dFront, dRight = scanDistance()

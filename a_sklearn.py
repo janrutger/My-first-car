@@ -61,11 +61,11 @@ def main():
     X, y = procesData(data)
 
     My_Model = makeModel("svc", X, y)
-    My_test = [[75, 30, 80], [80, 55, 20], [80, 20, 75], [88, 40, 75]]
+    My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75]]
     My_predictions = My_Model.predict(My_test)
     print(My_test)
     print(My_predictions)
-    #plotData(data)
+    plotData(data)
 
     
 if __name__ == "__main__":

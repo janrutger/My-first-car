@@ -65,6 +65,7 @@ def main():
 
     My_Model = makeModel("svc", X, y)
     My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75], [randrange(200),randrange(200),randrange(200)]]
+    My_test_norm = [[0.45, 0.15, 0.4],[0.4, 0.225, 0.1], [0.4, 0.4, 0.375], [0.375, 0.175, 0.4],[0.4, 0.125, 0.475], [0.4,0.1,0.375]]
     My_predictions = My_Model.predict(My_test)
     print(My_test)
     print(My_predictions)

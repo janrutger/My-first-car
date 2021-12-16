@@ -2,45 +2,33 @@ from random import randrange
 import os.path as path
 #from types import prepare_class
 
+maxDistance = 200
+normFactor = 1 # 1 means no normalisation, 
+
 def scanDistance():
-    maxrand = 200
-    dLeft  = randrange(maxrand)
-    dFront = randrange(maxrand)
-    dRight = randrange(maxrand)
+    
+    dLeft  = randrange(maxDistance)/normFactor
+    dFront = randrange(maxDistance)/normFactor
+    dRight = randrange(maxDistance)/normFactor
 
     return(dLeft, dFront, dRight)
 
 def evalDistance(dLeft, dFront, dRight):
-    if dFront <= 20:
+    if dFront <= 20/normFactor:
         return("back")
-    elif dFront <= 30:
+    elif dFront <= 30/normFactor:
         if dLeft <= dRight:
             return("spin_right")
         else:
             return("spin_left")
-    elif dFront <= 50:
+    elif dFront <= 50/normFactor:
         if dLeft <= dRight:
             return("right")
         else:
             return("left")
-    elif dFront > 50:
+    elif dFront > 50/normFactor:
         return("forward")
 
-    # if dFront <= 20:
-    #     return("back")
-    # if dFront >= 50:
-    #     return("forward")
-    # else:
-    #     if dFront <= 30:
-    #         if dLeft <= dRight:
-    #             return("spin_right")
-    #         else:
-    #             return("spin_left")
-    #     else:
-    #         if dLeft <= dRight:
-    #             return("right")
-    #         else:
-    #             return("left")
 
 def writeResult(dLeft, dFront, dRight, driveCommand):
     if not path.isfile('randomdrive.txt'):
@@ -53,7 +41,7 @@ def writeResult(dLeft, dFront, dRight, driveCommand):
 
 
 def main():
-    count = 3000
+    count = 6000
     while count > 0:
 
         dLeft, dFront, dRight = scanDistance()

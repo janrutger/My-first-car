@@ -1,0 +1,8 @@
+left,front,right,command
+0.45, 0.15, 0.4, spin_left
+0.4, 0.225, 0.1, left
+0.4, 0.4, 0.375, front
+0.375, 0.175, 0.4, right
+0.4, 0.125, 0.475, spin_right
+0.4, 0.1, 0.375, stop
+

@@ -45,7 +45,7 @@ print(a)
 print (accuracy)
 
 
-Questions = pandas.read_csv("Predict.txt", header=0)
+Questions = pandas.read_csv("Predict_norm.txt", header=0)
 toPredict = Questions.drop(['command'], axis=1)
 answer= Questions['command']
 

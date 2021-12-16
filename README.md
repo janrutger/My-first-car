@@ -1,5 +1,5 @@
 # My-first-car
-kijken wat ik met Machine Learning kan doen
+kijken wat ik met Machine Learning kan doen op een Raspberry Pi model 4B (4Gig) Buster 32 bits
 
 tensorflow               1.14.0
 

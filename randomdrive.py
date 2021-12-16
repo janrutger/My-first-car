@@ -3,7 +3,7 @@ import os.path as path
 #from types import prepare_class
 
 maxDistance = 200
-normFactor = 1 # 1 means no normalisation, 
+normFactor = 200 # 1 means no normalisation, 
 
 def scanDistance():
     

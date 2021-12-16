@@ -50,7 +50,7 @@ toPredict = Questions.drop(['command'], axis=1)
 answer= Questions['command']
 
 Prediction = model.predict_classes(toPredict)
-print(Prediction)
+print(encoder.inverse_transform(Prediction))
 
 
 # estimator = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=5, verbose=1)

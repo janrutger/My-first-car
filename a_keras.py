@@ -10,7 +10,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
 # load dataset
-data = pandas.read_csv("randomdrive.txt", header=0)
+data = pandas.read_csv("randomdrive_norm.txt", header=0)
 X = data.drop(['command'], axis=1)
 Y = data['command']
 #dataset = dataframe.values

@@ -38,7 +38,7 @@ def baseline_model():
 
 
 model = baseline_model()
-model.fit(X_train, y_train, epochs=10, batch_size=5, verbose=1)
+model.fit(X_train, y_train, epochs=200, batch_size=5, verbose=1)
 
 a, accuracy = model.evaluate(X_test, y_test, verbose=1)
 print(a)

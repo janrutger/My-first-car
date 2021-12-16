@@ -53,7 +53,7 @@ def writeResult(dLeft, dFront, dRight, driveCommand):
 
 
 def main():
-    count = 150
+    count = 3000
     while count > 0:
 
         dLeft, dFront, dRight = scanDistance()

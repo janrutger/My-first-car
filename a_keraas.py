@@ -26,8 +26,6 @@ dummy_y = np_utils.to_categorical(encoded_Y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, dummy_y, random_state = 0)
 
-
-
 # define baseline model
 def baseline_model():
 	# create model
@@ -40,11 +38,19 @@ def baseline_model():
 
 
 model = baseline_model()
-model.fit(X_train, y_train, epochs=200, batch_size=5, verbose=1)
+model.fit(X_train, y_train, epochs=10, batch_size=5, verbose=1)
 
 a, accuracy = model.evaluate(X_test, y_test, verbose=1)
 print(a)
 print (accuracy)
+
+
+Questions = pandas.read_csv("Predict.txt", header=0)
+toPredict = Questions.drop(['command'], axis=1)
+answer= Questions['command']
+
+Prediction = model.predict_classes(toPredict)
+print(Prediction)
 
 
 # estimator = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=5, verbose=1)

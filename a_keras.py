@@ -31,6 +31,7 @@ def baseline_model():
 	# create model
 	model = Sequential()
 	model.add(Dense(9, input_dim=3, activation='relu'))
+	model.add(Dense(6, activation='relu'))
 	model.add(Dense(6, activation='softmax'))
 	# Compile model
 	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -38,19 +39,29 @@ def baseline_model():
 
 
 model = baseline_model()
-model.fit(X_train, y_train, epochs=200, batch_size=5, verbose=1)
+model.fit(X_train, y_train, epochs=150, batch_size=5, verbose=1)
 
 a, accuracy = model.evaluate(X_test, y_test, verbose=1)
 print(a)
 print (accuracy)
 
 
-Questions = pandas.read_csv("Predict_norm.txt", header=0)
-toPredict = Questions.drop(['command'], axis=1)
-answer= Questions['command']
-
+Questions= { "left": [0.45, 0.4, 0.4, 0.375, 0.4, 0.4], 
+ 			"front": [0.15, 0.225, 0.4, 0.175, 0.125, 0.1],
+ 		    "right": [0.4, 0.1, 0.375, 0.4, 0.475, 0.375]}
+toPredict = pandas.DataFrame(Questions)
 Prediction = model.predict_classes(toPredict)
 print(encoder.inverse_transform(Prediction))
+#print(toPredict1)
+
+
+# Questions = pandas.read_csv("Predict_norm.txt", header=0)
+# toPredict = Questions.drop(['command'], axis=1)
+#answer= Questions['command']
+#print(toPredict)
+
+# Prediction = model.predict_classes(toPredict)
+# print(encoder.inverse_transform(Prediction))
 
 
 # estimator = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=5, verbose=1)

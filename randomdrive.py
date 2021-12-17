@@ -3,7 +3,7 @@ import os.path as path
 #from types import prepare_class
 
 maxDistance = 200
-normFactor = 200 # 1 means no normalisation, 
+normFactor = 1 # 1 means no normalisation, 
 
 def scanDistance():
     
@@ -41,7 +41,7 @@ def writeResult(dLeft, dFront, dRight, driveCommand):
 
 
 def main():
-    count = 6000
+    count = 1000
     while count > 0:
 
         dLeft, dFront, dRight = scanDistance()

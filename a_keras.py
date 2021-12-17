@@ -10,13 +10,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
 # load dataset
-data = pandas.read_csv("randomdrive_norm.txt", header=0)
+data = pandas.read_csv("randomdrive.txt", header=0)
 X = data.drop(['command'], axis=1)
+X=X/200  #Normalize dataset maxdistance=200
 Y = data['command']
-#dataset = dataframe.values
-#print(dataset)
-#X = dataset[:,0:2].astype(float)
-#Y = dataset[:,3]
+
 # encode class values as integers
 encoder = LabelEncoder()
 encoder.fit(Y)
@@ -52,23 +50,4 @@ Questions= { "left": [0.45, 0.4, 0.4, 0.375, 0.4, 0.4],
 toPredict = pandas.DataFrame(Questions)
 Prediction = model.predict_classes(toPredict)
 print(encoder.inverse_transform(Prediction))
-#print(toPredict1)
 
-
-# Questions = pandas.read_csv("Predict_norm.txt", header=0)
-# toPredict = Questions.drop(['command'], axis=1)
-#answer= Questions['command']
-#print(toPredict)
-
-# Prediction = model.predict_classes(toPredict)
-# print(encoder.inverse_transform(Prediction))
-
-
-# estimator = KerasClassifier(build_fn=baseline_model, epochs=200, batch_size=5, verbose=1)
-# estimator.fit(X_train, y_train)
-
-# a, accuracy = estimator.eva
-
-#kfold = KFold(n_splits=10, shuffle=True)
-#results = cross_val_score(estimator, X, dummy_y, cv=kfold)
-#print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))

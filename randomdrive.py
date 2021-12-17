@@ -2,31 +2,30 @@ from random import randrange
 import os.path as path
 #from types import prepare_class
 
-maxDistance = 200
-normFactor = 1 # 1 means no normalisation, 
+maxDistance = 200 
 
 def scanDistance():
     
-    dLeft  = randrange(maxDistance)/normFactor
-    dFront = randrange(maxDistance)/normFactor
-    dRight = randrange(maxDistance)/normFactor
+    dLeft  = randrange(maxDistance)
+    dFront = randrange(maxDistance)
+    dRight = randrange(maxDistance)
 
     return(dLeft, dFront, dRight)
 
 def evalDistance(dLeft, dFront, dRight):
-    if dFront <= 20/normFactor:
+    if dFront <= 20:
         return("back")
-    elif dFront <= 30/normFactor:
+    elif dFront <= 30:
         if dLeft <= dRight:
             return("spin_right")
         else:
             return("spin_left")
-    elif dFront <= 50/normFactor:
+    elif dFront <= 50:
         if dLeft <= dRight:
             return("right")
         else:
             return("left")
-    elif dFront > 50/normFactor:
+    elif dFront > 50:
         return("forward")
 
 

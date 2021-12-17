@@ -14,7 +14,8 @@ Y = data['command']
 
 # encode class values as integers
 encoder = LabelEncoder()
-encoder.fit(Y)
+#encoder.fit(Y)
+encoder.fit(["spin_left", "left", "forward", "right", "spin_right", "back"])
 encoded_Y = encoder.transform(Y)
 # convert integers to dummy variables (i.e. one hot encoded)
 dummy_y = np_utils.to_categorical(encoded_Y)
@@ -34,16 +35,15 @@ def baseline_model():
 
 
 model = baseline_model()
-model.fit(X_train, y_train, epochs=150, batch_size=5, verbose=1)
+model.fit(X_train, y_train, epochs=1, batch_size=5, verbose=1)
 
 a, accuracy = model.evaluate(X_test, y_test, verbose=1)
 print(a)
 print (accuracy)
 
-#My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75], [randrange(200),randrange(200),randrange(200)]]
-
+#do some predictions
 Questions= { "left": [90, 80, 80, 75, 80, 80, randrange(200)], 
- 			"front": [30, 45, 80, 35, 25, 75, randrange(200)],
+ 			"front": [30, 45, 80, 35, 25, 20, randrange(200)],
  		    "right": [80, 20, 75, 80, 95, 75, randrange(200)]}
 toPredict = pandas.DataFrame(Questions)
 print(toPredict)

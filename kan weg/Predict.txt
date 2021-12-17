@@ -1,8 +1,0 @@
-left,front,right,command
-90, 30, 80, spin_left
-80, 45, 20, left
-80, 80, 75, front
-75, 35, 80, right
-80, 25, 95, spin_right
-80, 20, 75, stop
-

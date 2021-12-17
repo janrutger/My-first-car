@@ -1,12 +1,9 @@
 import pandas
+from random import randrange
 from keras.models import Sequential
 from keras.layers import Dense
-from keras.wrappers.scikit_learn import KerasClassifier
 from keras.utils import np_utils
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
-from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
 # load dataset
@@ -43,11 +40,13 @@ a, accuracy = model.evaluate(X_test, y_test, verbose=1)
 print(a)
 print (accuracy)
 
+#My_test = [[90, 30, 80], [80, 45, 20], [80, 80, 75], [75, 35, 80], [80, 25, 95], [80, 20, 75], [randrange(200),randrange(200),randrange(200)]]
 
-Questions= { "left": [0.45, 0.4, 0.4, 0.375, 0.4, 0.4], 
- 			"front": [0.15, 0.225, 0.4, 0.175, 0.125, 0.1],
- 		    "right": [0.4, 0.1, 0.375, 0.4, 0.475, 0.375]}
+Questions= { "left": [90, 80, 80, 75, 80, 80, randrange(200)], 
+ 			"front": [30, 45, 80, 35, 25, 75, randrange(200)],
+ 		    "right": [80, 20, 75, 80, 95, 75, randrange(200)]}
 toPredict = pandas.DataFrame(Questions)
-Prediction = model.predict_classes(toPredict)
+print(toPredict)
+Prediction = model.predict_classes(toPredict/200) #normalizing inputdata
 print(encoder.inverse_transform(Prediction))
 

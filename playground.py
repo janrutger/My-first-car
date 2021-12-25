@@ -27,7 +27,7 @@ while run:
 
     
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
-    print(Coordinates)
+    #print(Coordinates)
     
     
     win.fill((0,0,0))  # Fills the screen with black

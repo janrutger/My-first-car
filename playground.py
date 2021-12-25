@@ -6,14 +6,7 @@ import bot
 win = pygame.display.set_mode((640,480))
 pygame.display.set_caption("First Game")
 
-# x = 50
-# y = 80
-# width = 20
-# height = 40
-# vel = 10
-
 run = True
-
 car = bot.Bot()
 
 while run:
@@ -32,10 +25,15 @@ while run:
             if event.key == pygame.K_4:
                 car.botMove("left")
 
-    Coordinates = car.botCoordinates()
+    
+    Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
+    #print(Coordinates)
+    
+    
     win.fill((0,0,0))  # Fills the screen with black
-    #pygame.draw.rect(win, (255,0,0), (x, y, width, height))  
-    pygame.draw.polygon(win, (255,0,0), Coordinates, 0)
-    pygame.display.update() 
+    pygame.draw.polygon(win, (255,0,255), Coordinates, 0) #draw de car
+    pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
+    pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
+    pygame.display.update() #updte screen to show the car
     
 pygame.quit()

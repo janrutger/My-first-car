@@ -28,7 +28,7 @@ def makeModel(type, X, y):
         accuracy = thisModel.score(X_test, y_test)
         print(accuracy)
     else:
-        thisModel = KNeighborsClassifier(n_neighbors = 21).fit(X_train, y_train)
+        thisModel = KNeighborsClassifier(n_neighbors = 5).fit(X_train, y_train)
         # accuracy on X_test
         accuracy = thisModel.score(X_test, y_test)
         print(accuracy)

@@ -26,8 +26,13 @@ X_train, X_test, y_train, y_test = train_test_split(X, dummy_y, random_state = 0
 def baseline_model():
 	# create model
 	model = Sequential()
-	model.add(Dense(9, input_dim=3, activation='relu'))
-	model.add(Dense(6, activation='relu'))
+	model.add(Dense(512, input_dim=3, activation='relu'))
+	model.add(Dense(128, activation='relu'))
+	model.add(Dense(128, activation='relu'))
+	model.add(Dense(128, activation='relu'))
+	model.add(Dense(64, activation='relu'))
+	model.add(Dense(64, activation='relu'))
+	model.add(Dense(32, activation='relu'))
 	model.add(Dense(6, activation='softmax'))
 	# Compile model
 	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -35,10 +40,10 @@ def baseline_model():
 
 
 model = baseline_model()
-model.fit(X_train, y_train, epochs=1, batch_size=5, verbose=1)
+model.fit(X_train, y_train, epochs=300, batch_size=5, verbose=2)
 
-a, accuracy = model.evaluate(X_test, y_test, verbose=1)
-print(a)
+loss, accuracy = model.evaluate(X_test, y_test, verbose=1)
+print(loss)
 print (accuracy)
 
 #do some predictions

@@ -17,13 +17,17 @@ while run:
             run = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_8:
-                car.botMove("up")
-            if event.key == pygame.K_6:
+                car.botMove("forward")
+            if event.key == pygame.K_9:
                 car.botMove("right")
+            if event.key == pygame.K_6:
+                car.botMove("spin_right")
             if event.key == pygame.K_2:
-                car.botMove("down")
-            if event.key == pygame.K_4:
+                car.botMove("back")
+            if event.key == pygame.K_7:
                 car.botMove("left")
+            if event.key == pygame.K_4:
+                car.botMove("spin_left")
 
     
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright

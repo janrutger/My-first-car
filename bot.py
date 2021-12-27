@@ -29,7 +29,7 @@ class  Bot:
         Y = 1
         speed = 5
 
-        if move == "up":
+        if move == "forward":
             self.angle_ = (self.botAngle + 0)%360 #do not change the direction, ony move up
             rads = math.radians(self.angle_)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
@@ -43,8 +43,16 @@ class  Bot:
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
+        if move == "spin_right":
+            angle = 90
+            speed = 1  #just change direction, do not move
+            self.botAngle = (self.botAngle + angle)%360
+            rads = math.radians(self.botAngle)
+            self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
+            self.botNewCoordinates(self.botCenter, self.botAngle)
 
-        if move == "down":
+
+        if move == "back":
             self.angle_ = (self.botAngle + 180)%360 #do not change the direction, ony move down
             rads = math.radians(self.angle_)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
@@ -52,6 +60,14 @@ class  Bot:
 
         if move == "left":
             angle = 330
+            speed = 1  #just change direction, do not move
+            self.botAngle = (self.botAngle + angle)%360
+            rads = math.radians(self.botAngle)
+            self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
+            self.botNewCoordinates(self.botCenter, self.botAngle)
+
+        if move == "spin_left":
+            angle = 270
             speed = 1  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)

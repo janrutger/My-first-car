@@ -31,11 +31,9 @@ while run:
     
     
     win.fill((0,0,0))  # Fills the screen with black
-    pygame.draw.polygon(win, (255,0,255), Coordinates, 0) #draw de car
+    pygame.draw.polygon(win,(0,0,255), Coordinates, 0) #draw de car
     pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
     pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
-    pygame.draw.circle(win, (0,0,255), Coordinates[2], 3, 0)
-    pygame.draw.circle(win, (100,100,100), Coordinates[3], 3, 0)
     pygame.display.update() #updte screen to show the car
     
 pygame.quit()

@@ -6,9 +6,12 @@ pygame.display.set_caption("First Game")
 import robot
 car = robot.Car()
 
+import brain
+carBrain = brain.Brain()
+
 run = True
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(10)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,11 +33,18 @@ while run:
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
     pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
-    pygame.draw.rect(win, (0,0,0,0), (200,150,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (100,150,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (150,300,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (425,150,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (300,0,50,150), 0)
+    pygame.draw.rect(win, (0,0,0,0), (420,350,125,30), 0)
     scene = pygame.surfarray.array3d(win)
     
-    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-45,-30,0,30, 45))
-    print(sonarDistances, sonarLines)
+    ##get distance + get move Command + perform move
+    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-25,0,35))
+    carCommand = carBrain.getDirection(sonarDistances)
+    print(sonarDistances, carCommand)
+    car.botMove(carCommand)
 
     ## Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright

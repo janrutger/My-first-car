@@ -1,14 +1,12 @@
 import pygame
 pygame.init()
-
-import bot
-
 win = pygame.display.set_mode((640,480))
 pygame.display.set_caption("First Game")
 
-run = True
-car = bot.Bot()
+import robot
+car = robot.Car()
 
+run = True
 while run:
     pygame.time.delay(100)
 
@@ -29,15 +27,17 @@ while run:
             if event.key == pygame.K_4:
                 car.botMove("spin_left")
 
-    
+    ## Create scene
+    win.fill((0,0,0))  # Fills the screen with black
+
+    ## Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
     #print(Coordinates)
-    
-    
-    win.fill((0,0,0))  # Fills the screen with black
     pygame.draw.polygon(win,(0,0,255), Coordinates, 0) #draw de car
     pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
     pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
+
+    ##Update playground window
     pygame.display.update() #updte screen to show the car
     
 pygame.quit()

@@ -1,6 +1,6 @@
 import math
 
-class  Bot:
+class  Car:
     def __init__(self):
         self.botCenter = (50, 80)
         self.botHeight = 40
@@ -59,7 +59,7 @@ class  Bot:
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
         if move == "left":
-            angle = 330
+            angle = -30
             speed = 1  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
@@ -67,7 +67,7 @@ class  Bot:
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
         if move == "spin_left":
-            angle = 270
+            angle = -90
             speed = 1  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)

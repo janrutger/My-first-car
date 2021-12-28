@@ -88,11 +88,10 @@ class  Car:
             rads = math.radians(sonarAngle)
             for n in range(1,maxLenght+1):
                 sonarProbe = (int(self.botCenter[X] + n * math.cos(rads)),  int(self.botCenter[Y] + n * math.sin(rads)))
-                probe = scene[sonarProbe] == (0,0,0)
-                #print(probe.all())
+                probe = scene[sonarProbe] == (0,0,0) #is black
                 if probe.all() or n == maxLenght:
                      sonarDistances.append(n)
                      sonarCoordinates.append(sonarProbe)
                      break
         
-        return(sonarDistances, sonarCoordinates)
+        return(sonarDistances, sonarCoordinates, self.botCenter)

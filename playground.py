@@ -29,6 +29,11 @@ while run:
 
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
+    pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
+    pygame.draw.rect(win, (0,0,0,0), (200,150,75,100), 0)
+    scene = pygame.surfarray.array3d(win)
+    
+    car.botSonar(scene, (-30,0,30))
 
     ## Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright

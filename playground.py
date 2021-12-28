@@ -33,7 +33,8 @@ while run:
     pygame.draw.rect(win, (0,0,0,0), (200,150,75,100), 0)
     scene = pygame.surfarray.array3d(win)
     
-    car.botSonar(scene, (-30,0,30))
+    distances, coordinates = car.botSonar(scene, (-30,0,30))
+    print(distances, coordinates)
 
     ## Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright

@@ -74,11 +74,25 @@ class  Car:
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
-        print(self.botAngle, self.botCoordinates())
+        #print(self.botAngle, self.botCoordinates())
 
     def botSonar(self, scene, offsets):
-        sonarDistances = ()
-        sonarCoordinates = ()
+        X = 0
+        Y = 1
+        sonarDistances = []
+        sonarCoordinates = []
+        maxLenght = 200
 
         for offset in offsets:
-            print(offset)
+            sonarAngle = (self.botAngle + offset)%360
+            rads = math.radians(sonarAngle)
+            for n in range(1,maxLenght+1):
+                sonarProbe = (int(self.botCenter[X] + n * math.cos(rads)),  int(self.botCenter[Y] + n * math.sin(rads)))
+                probe = scene[sonarProbe] == (0,0,0)
+                #print(probe.all())
+                if probe.all() or n == maxLenght:
+                     sonarDistances.append(n)
+                     sonarCoordinates.append(sonarProbe)
+                     break
+        
+        return(sonarDistances, sonarCoordinates)

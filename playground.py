@@ -7,7 +7,7 @@ import robot
 car = robot.Car()
 
 import brain
-carBrain = brain.Brain("svm")
+carBrain = brain.Brain("svm") #Supported Brains "basic" of "svm"
 
 run = True
 while run:

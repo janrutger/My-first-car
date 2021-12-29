@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 win = pygame.display.set_mode((640,480))
-pygame.display.set_caption("First Game")
+pygame.display.set_caption("Driving a ROBOTcar")
 
 import robot
 car = robot.Car()
@@ -11,7 +11,7 @@ carBrain = brain.Brain()
 
 run = True
 while run:
-    pygame.time.delay(10)
+    pygame.time.delay(100)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -41,7 +41,7 @@ while run:
     scene = pygame.surfarray.array3d(win)
     
     ##get distance + get move Command + perform move
-    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-25,0,35))
+    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-30,-10,0, 10, 30))
     carCommand = carBrain.getDirection(sonarDistances)
     print(sonarDistances, carCommand)
     car.botMove(carCommand)

@@ -1,7 +1,11 @@
 # My-first-car
-kijken wat ik met Machine Learning kan doen op een Raspberry Pi model 4B (4Gig) Buster 32 bits.
+kijken wat ik met een ROBOT car en Machine Learning kan doen op een Raspberry Pi model 4B (4Gig) Buster 32 bits.
+Voor de robot Simulator (default PYgame versie van de distributie)
 
-De voorbeelden zijn met Support Vector Machine, k nearest neighbor algoritme en met een Keras/Tensorflow neural netwerk
+Playground.py (main), robot.py & brain.py
+
+
+De voorbeelden met Support Vector Machine, k nearest neighbor algoritme en met een Keras/Tensorflow neural netwerk, zijn verplaatst nar de Example directorie
 
 tensorflow               1.14.0
 

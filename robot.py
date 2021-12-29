@@ -37,8 +37,8 @@ class  Car:
             self.botNewCoordinates(self.botCenter, self.botAngle)
              
         if move == "right":
-            angle = 15
-            speed = 2  #just change direction, do not move
+            angle = 5
+            speed = 5  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
@@ -61,8 +61,8 @@ class  Car:
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
         if move == "left":
-            angle = -15
-            speed = 2  #just change direction, do not move
+            angle = -5
+            speed = 5  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 

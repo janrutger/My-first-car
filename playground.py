@@ -7,7 +7,7 @@ import robot
 car = robot.Car()
 
 import brain
-carBrain = brain.Brain()
+carBrain = brain.Brain("basic")
 
 run = True
 while run:
@@ -41,7 +41,7 @@ while run:
     scene = pygame.surfarray.array3d(win)
     
     ##get distance + get move Command + perform move
-    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-30,-10,0, 10, 30))
+    sonarDistances, sonarLines, carCenter = car.botSonar(scene, (-30,0,30))
     carCommand = carBrain.getDirection(sonarDistances)
     print(sonarDistances, carCommand)
     car.botMove(carCommand)

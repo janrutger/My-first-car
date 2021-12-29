@@ -1,27 +1,25 @@
 
 
 class  Brain:
-    def __init__(self):
-        self.type = "algoritme"
+    def __init__(self, brainType):
+        self.brainType = brainType
+        if self.brainType == "basic":
+            pass
 
 
     def getDirection(self, distances):
-        dLeft  = distances[0]
-        dFrontL= distances[1]
-        dFront = distances[2]
-        dFrontR= distances[3]
-        dRight = distances[4]
+        if self.brainType == "basic":
+            direction = self.getBasic(distances)
+            return(direction)
 
-        #dFront =(dFrontL+dFrontR+dFront)/3
+
+    def getBasic(self, distances):
+        dLeft  = distances[0]
+        dFront = distances[1]
+        dRight = distances[2]
 
         if dFront <= 30:
             return("back")
-
-        # elif dFront <= 30:
-        #     if dLeft <= dRight:
-        #         return("spin_right")
-        #     else:
-        #         return("spin_left")
 
         elif dFront <= 80:
             if dLeft <= dRight:
@@ -30,41 +28,6 @@ class  Brain:
                 return("spin_left")
                 
         elif dFront < 180:
-            if dLeft <= dRight:
-                return("right")
-            else:
-                return("left")
-        else:
-            return("forward")
-
-
-
-#############################################################
-    def getDirectionV2(self, distances):
-        dLeft  = distances[0]
-        dFrontL= distances[1]
-        dFront = distances[2]
-        dFrontR= distances[3]
-        dRight = distances[4]
-
-        dFront =(dFrontL+dFrontR+dFront)/3
-
-        if dFront <= 30:
-            return("back")
-
-        # elif dFront <= 30:
-        #     if dLeft <= dRight:
-        #         return("spin_right")
-        #     else:
-        #         return("spin_left")
-
-        elif dFront <= 80:
-            if dLeft <= dRight:
-                return("spin_right")
-            else:
-                return("spin_left")
-                
-        elif dFront < 150:
             if dLeft <= dRight:
                 return("right")
             else:

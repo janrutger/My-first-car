@@ -5,12 +5,26 @@ class  Brain:
         self.brainType = brainType
         if self.brainType == "basic":
             pass
+        elif self.brainType == "svm":
+            import pandas as pd
+            from sklearn.model_selection import train_test_split
+            from sklearn.svm import SVC
+            data = pd.read_csv('randomdrive.txt', header=0)
+            X = data.drop(['command'], axis=1)
+            y = data['command']
+            X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+            self.svmModel = SVC(kernel = 'linear', C = 1).fit(X_train, y_train)
+            accuracy = self.svmModel.score(X_test, y_test)
+            print(accuracy)
+
 
 
     def getDirection(self, distances):
         if self.brainType == "basic":
             direction = self.getBasic(distances)
-            return(direction)
+        if self.brainType == "svm":
+            direction = self.svmModel.predict([distances])
+        return(direction)
 
 
     def getBasic(self, distances):

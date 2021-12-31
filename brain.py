@@ -21,13 +21,13 @@ class  Brain:
 
     def getDirection(self, distances):
         if self.brainType == "basic":
-            direction = self.getBasic(distances)
+            direction = self.basicModel(distances)
         if self.brainType == "svm":
             direction = self.svmModel.predict([distances])
         return(direction)
 
     #this is the "basic" algoritme
-    def getBasic(self, distances):
+    def basicModel(self, distances):
         dLeft  = distances[0]
         dFront = distances[1]
         dRight = distances[2]
@@ -51,7 +51,7 @@ class  Brain:
         else:
             high = max(dLeft, dRight)
             low  = min(dLeft, dRight)
-            if (high/2) > low:
+            if (high* 0.7) > low:
                 if dLeft <= dRight:
                     return("right")
                 else:

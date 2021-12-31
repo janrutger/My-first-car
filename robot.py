@@ -5,7 +5,7 @@ class  Car:
         self.botCenter = (50, 80)
         self.botHeight = 40
         self.botWidht  = 20
-        self.botAngle = 331
+        self.botAngle  = 5
 
         self.botNewCoordinates(self.botCenter, self.botAngle)
 

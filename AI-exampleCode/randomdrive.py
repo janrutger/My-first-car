@@ -21,29 +21,42 @@ def evalDistance(dLeft, dFront, dRight):
             return("spin_right")
         else:
             return("spin_left")
-                
+                    
     elif dFront < 180:
-        if dLeft <= dRight:
+        #if dLeft <= dRight:
+        if dLeft < dRight:
             return("right")
         else:
-            return("left")
+           return("left")
     else:
-        return("forward")
+        high = max(dLeft, dRight)
+        low  = min(dLeft, dRight)
+        if (high* 0.7) > low:
+            if dLeft <= dRight:
+                return("right")
+            else:
+                return("left")
+        else:
+            return("forward")
 
-    # if dFront <= 20:
-    #     return("back")
-    # elif dFront <= 30:
+
+    # if dFront <= 30:
+    #         return("back")
+
+    # elif dFront <= 80:
     #     if dLeft <= dRight:
     #         return("spin_right")
     #     else:
     #         return("spin_left")
-    # elif dFront <= 50:
+                
+    # elif dFront < 180:
     #     if dLeft <= dRight:
     #         return("right")
     #     else:
     #         return("left")
-    # elif dFront > 50:
+    # else:
     #     return("forward")
+
 
 
 def writeResult(dLeft, dFront, dRight, driveCommand):

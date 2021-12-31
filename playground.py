@@ -7,11 +7,11 @@ import robot
 car = robot.Car()
 
 import brain
-carBrain = brain.Brain("svm") #Supported Brains "basic" of "svm"
+carBrain = brain.Brain("basic") #Supported Brains "basic" of "svm"
 
 run = True
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(500)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,11 +33,11 @@ while run:
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
     pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
-    pygame.draw.rect(win, (0,0,0,0), (100,150,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (80,125,75,100), 0)
     pygame.draw.rect(win, (0,0,0,0), (150,300,75,100), 0)
-    pygame.draw.rect(win, (0,0,0,0), (425,150,75,100), 0)
+    pygame.draw.rect(win, (0,0,0,0), (430,120,75,100), 0)
     pygame.draw.rect(win, (0,0,0,0), (300,0,50,150), 0)
-    pygame.draw.rect(win, (0,0,0,0), (420,350,125,30), 0)
+    pygame.draw.rect(win, (0,0,0,0), (380,375,125,30), 0)
     sceneMap = pygame.surfarray.array3d(win)
     
     ##get distance + get move Command + perform move

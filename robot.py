@@ -5,7 +5,7 @@ class  Car:
         self.botCenter = (50, 80)
         self.botHeight = 40
         self.botWidht  = 20
-        self.botAngle = 330
+        self.botAngle = 331
 
         self.botNewCoordinates(self.botCenter, self.botAngle)
 
@@ -38,14 +38,14 @@ class  Car:
              
         if move == "right":
             angle = 5
-            speed = 5  #just change direction, do not move
+            speed = speed  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
         if move == "spin_right":
-            angle = 45
+            angle = 47
             speed = 2  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
@@ -54,7 +54,7 @@ class  Car:
 
 
         if move == "back":
-            speed = speed
+            speed = speed*2
             self.angle_ = (self.botAngle + 180)%360 #do not change the direction, ony move down
             rads = math.radians(self.angle_)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
@@ -62,14 +62,14 @@ class  Car:
 
         if move == "left":
             angle = -5
-            speed = 5  #just change direction, do not move
+            speed = speed  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)
             self.botCenter  = (int(self.botCenter[X] + speed * math.cos(rads)),  int(self.botCenter[Y] + speed * math.sin(rads))) 
             self.botNewCoordinates(self.botCenter, self.botAngle)
 
         if move == "spin_left":
-            angle = -45
+            angle = -47
             speed = 2  #just change direction, do not move
             self.botAngle = (self.botAngle + angle)%360
             rads = math.radians(self.botAngle)

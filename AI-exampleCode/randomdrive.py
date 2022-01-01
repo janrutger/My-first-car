@@ -31,10 +31,10 @@ def evalDistance(dLeft, dFront, dRight):
     else:
         high = max(dLeft, dRight)
         low  = min(dLeft, dRight)
-        if (high* 0.7) > low:
-            if dLeft <= dRight:
+        if (high* 0.9) > low:
+            if dLeft < dRight:
                 return("right")
-            else:
+            elif dLeft > dRight:
                 return("left")
         else:
             return("forward")

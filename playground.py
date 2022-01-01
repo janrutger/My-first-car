@@ -11,7 +11,7 @@ carBrain = brain.Brain("svm") #Supported Brains "basic" of "svm"
 
 run = True
 while run:
-    pygame.time.delay(500)
+    pygame.time.delay(300)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -40,12 +40,9 @@ while run:
     pygame.draw.rect(win, (0,0,0,0), (380,375,125,30), 0)
     sceneMap = pygame.surfarray.array3d(win)
     
-    ##get distance + get move Command + perform move
+    ##get distance 
     sonarDistances, sonarLines, carCenter = car.botSonar(sceneMap, (-30,0,30))
-    carCommand = carBrain.getDirection(sonarDistances)
-    print(sonarDistances, carCommand)
-    car.botMove(carCommand)
-
+    
     ## Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
     #print(Coordinates)
@@ -55,9 +52,15 @@ while run:
     for sonarLine in sonarLines:
         pygame.draw.line(win, (0,0,0), carCenter, sonarLine, 1)
         pygame.draw.circle(win, (255,0,0), sonarLine, 1, 0)
-    
+
 
     ##Update playground window
     pygame.display.update() #updte screen to show the car
-    
+
+    ## get move Command + perform move   
+    carCommand = carBrain.getDirection(sonarDistances)
+    print(sonarDistances, carCommand)
+    car.botMove(carCommand)
+
+
 pygame.quit()

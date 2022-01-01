@@ -13,22 +13,23 @@ run = True
 while run:
     pygame.time.delay(200)
 
+    manualCommand = None
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_8:
-                car.botMove("forward")
+                manualCommand = "forward"
             if event.key == pygame.K_9:
-                car.botMove("right")
+                manualCommand = "right"
             if event.key == pygame.K_6:
-                car.botMove("spin_right")
+                manualCommand = "spin_right"
             if event.key == pygame.K_2:
-                car.botMove("back")
+                manualCommand = "back"
             if event.key == pygame.K_7:
-                car.botMove("left")
+                manualCommand = "left"
             if event.key == pygame.K_4:
-                car.botMove("spin_left")
+                manualCommand = "spin_left"
 
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
@@ -58,7 +59,7 @@ while run:
     pygame.display.update() #updte screen to show the car
 
     ## get move Command + perform move   
-    carCommand = carBrain.getDirection(sonarDistances)
+    carCommand = carBrain.getDirection(sonarDistances, manualCommand)
     print(sonarDistances, carCommand)
     car.botMove(carCommand)
 

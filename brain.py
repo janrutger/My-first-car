@@ -19,11 +19,15 @@ class  Brain:
 
 
 
-    def getDirection(self, distances):
-        if self.brainType == "basic":
-            direction = self.basicModel(distances)
-        if self.brainType == "svm":
-            direction = self.svmModel.predict([distances])
+    def getDirection(self, distances, manualCommand):
+        if manualCommand == None:
+            if self.brainType == "basic":
+                direction = self.basicModel(distances)
+            if self.brainType == "svm":
+                direction = self.svmModel.predict([distances])
+        else:
+            direction = manualCommand
+            
         return(direction)
 
     #this is the "basic" algoritme

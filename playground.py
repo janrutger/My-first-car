@@ -11,7 +11,7 @@ carBrain = brain.Brain("svm") #Supported Brains "basic" of "svm"
 
 run = True
 while run:
-    pygame.time.delay(300)
+    pygame.time.delay(200)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,26 +33,26 @@ while run:
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
     pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
-    pygame.draw.rect(win, (0,0,0,0), (80,125,75,100), 0)
-    pygame.draw.rect(win, (0,0,0,0), (150,300,75,100), 0)
-    pygame.draw.rect(win, (0,0,0,0), (430,120,75,100), 0)
-    pygame.draw.rect(win, (0,0,0,0), (300,0,50,150), 0)
-    pygame.draw.rect(win, (0,0,0,0), (380,375,125,30), 0)
+    pygame.draw.rect(win, (0,0,0), (80,125,75,100), 0)
+    pygame.draw.rect(win, (0,0,0), (150,300,75,100), 0)
+    pygame.draw.rect(win, (0,0,0), (430,120,75,100), 0)
+    pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
+    pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
+    pygame.draw.rect(win, (0,0,0), (320, 240, 40,40), 0)
     sceneMap = pygame.surfarray.array3d(win)
     
-    ##get distance 
-    sonarDistances, sonarLines, carCenter = car.botSonar(sceneMap, (-30,0,30))
-    
-    ## Draw the car
+    ## Get the Car coordinates & Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
     #print(Coordinates)
     pygame.draw.polygon(win,(0,0,255), Coordinates, 0) #draw de car
     pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
     pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
+
+    ##get distances & draw the sonar lines 
+    sonarDistances, sonarLines, carCenter = car.botSonar(sceneMap, (-30,0,30))
     for sonarLine in sonarLines:
         pygame.draw.line(win, (0,0,0), carCenter, sonarLine, 1)
         pygame.draw.circle(win, (255,0,0), sonarLine, 1, 0)
-
 
     ##Update playground window
     pygame.display.update() #updte screen to show the car

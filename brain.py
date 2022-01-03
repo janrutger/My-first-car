@@ -27,7 +27,7 @@ class  Brain:
                 direction = self.svmModel.predict([distances])
         else:
             direction = manualCommand
-            
+
         return(direction)
 
     #this is the "basic" algoritme
@@ -40,18 +40,35 @@ class  Brain:
             return("back")
 
         elif dFront <= 80:
-            if dLeft <= dRight:
-                return("spin_right")
+            high = max(dLeft, dRight)
+            low  = min(dLeft, dRight)
+            if (high* 0.9) > low:
+                if dLeft < dRight:
+                    return("spin_right")
+                elif dLeft > dRight:
+                    return("spin_left")
             else:
-                return("spin_left")
+                return("spin_right")
+            # if dLeft <= dRight:
+            #     return("spin_right")
+            # else:
+            #     return("spin_left")
                 
         
         elif dFront <= 180:
-            #if dLeft <= dRight:
-            if dLeft <= dRight:
-                return("right")
+            high = max(dLeft, dRight)
+            low  = min(dLeft, dRight)
+            if (high* 0.9) > low:
+                if dLeft < dRight:
+                    return("right")
+                elif dLeft > dRight:
+                    return("left")
             else:
-                return("left")
+                return("right")
+            # if dLeft <= dRight:
+            #     return("right")
+            # else:
+            #     return("left")
         else:
             high = max(dLeft, dRight)
             low  = min(dLeft, dRight)

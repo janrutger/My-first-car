@@ -1,17 +1,25 @@
+import os.path as path
 import pygame
 pygame.init()
 win = pygame.display.set_mode((640,480))
 pygame.display.set_caption("Driving a ROBOTcar")
 
+if path.isfile("Baantje2.png"):
+    print("file")
+    image = pygame.image.load("Baantje2.png")
+else:
+    image = None
+
+
 import robot
 car = robot.Car()
 
 import brain
-carBrain = brain.Brain("svm") #Supported Brains "basic" of "svm"
+carBrain = brain.Brain("basic") #Supported Brains "basic" of "svm"
 
 run = True
 while run:
-    pygame.time.delay(200)
+    pygame.time.delay(10)
 
     manualCommand = None
     for event in pygame.event.get():
@@ -34,13 +42,21 @@ while run:
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
     pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
-    pygame.draw.rect(win, (0,0,0), (80,125,75,100), 0)
-    pygame.draw.rect(win, (0,0,0), (150,300,75,100), 0)
-    pygame.draw.rect(win, (0,0,0), (430,120,75,100), 0)
-    pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
-    pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
-    pygame.draw.rect(win, (0,0,0), (320, 240, 40,40), 0)
+    if image != None:
+        win.blit(image, (0,0))
+    else:
+        pygame.draw.rect(win, (0,0,0), (80,125,40,100), 0)
+        pygame.draw.rect(win, (0,0,0), (150,300,40,100), 0)
+        pygame.draw.rect(win, (0,0,0), (430,120,30,100), 0)
+        pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
+        pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
+        pygame.draw.rect(win, (0,0,0), (320, 250, 40,40), 0)
+        pygame.draw.rect(win, (0,0,0), (180, 200, 40,40), 0)
+        pygame.draw.rect(win, (0,0,0), (500, 300, 20,20), 0)
+        pygame.draw.rect(win, (0,0,0), (500, 150, 20,20), 0)
+
     sceneMap = pygame.surfarray.array3d(win)
+    #print(sceneMap)
     
     ## Get the Car coordinates & Draw the car
     Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
@@ -50,7 +66,7 @@ while run:
     pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
 
     ##get distances & draw the sonar lines 
-    sonarDistances, sonarLines, carCenter = car.botSonar(sceneMap, (-30,0,30))
+    sonarDistances, sonarLines, carCenter = car.botSonar(sceneMap, (-35,0,35))
     for sonarLine in sonarLines:
         pygame.draw.line(win, (0,0,0), carCenter, sonarLine, 1)
         pygame.draw.circle(win, (255,0,0), sonarLine, 1, 0)

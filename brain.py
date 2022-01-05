@@ -55,7 +55,7 @@ class  Brain:
             #     return("spin_left")
                 
         
-        elif dFront <= 180:
+        elif dFront <= 100: 
             high = max(dLeft, dRight)
             low  = min(dLeft, dRight)
             if (high* 0.9) > low:
@@ -72,7 +72,7 @@ class  Brain:
         else:
             high = max(dLeft, dRight)
             low  = min(dLeft, dRight)
-            if (high* 0.9) > low:
+            if (high* 0.3) > low:
                 if dLeft < dRight:
                     return("right")
                 elif dLeft > dRight:

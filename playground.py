@@ -4,9 +4,9 @@ pygame.init()
 win = pygame.display.set_mode((640,480))
 pygame.display.set_caption("Driving a ROBOTcar")
 
-if path.isfile("Baantje2.png"):
+if path.isfile("images/obstakels.png"):
     print("file")
-    image = pygame.image.load("Baantje2.png")
+    image = pygame.image.load("images/baantje4.png")
 else:
     image = None
 
@@ -41,10 +41,10 @@ while run:
 
     ## Create scene
     win.fill((0,0,0))  # Fills the screen with black
-    pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
     if image != None:
         win.blit(image, (0,0))
     else:
+        pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
         pygame.draw.rect(win, (0,0,0), (80,125,40,100), 0)
         pygame.draw.rect(win, (0,0,0), (150,300,40,100), 0)
         pygame.draw.rect(win, (0,0,0), (430,120,30,100), 0)

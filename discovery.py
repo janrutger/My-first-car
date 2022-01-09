@@ -18,7 +18,6 @@ win = pygame.display.set_mode((HEIGHT,WIDTH))
 pygame.display.set_caption("Map discovery")
 
 grid = utils.makeGrid(HEIGHT, WIDTH, width)
-
 utils.showGrid(win, grid, width)
 
 run = True

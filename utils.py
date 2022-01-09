@@ -21,11 +21,25 @@ class Spot:
 
 def makeGrid(HEIGHT, WIDTH, width):
     grid = []
-    for row in range(0, HEIGHT-1, width):
+    for row in range(0, HEIGHT // width):
         grid.append([])
-        for col in range(0, WIDTH-1, width):
+        for col in range(0, WIDTH // width):
             spot = Spot(row, col, width)
-            grid[col].append(spot)
+            grid[row].append(spot)
+    return(grid)
+
+def showGrid(win, grid, width):
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            thisSpot = grid[i][j]
+            pygame.draw.rect(win, thisSpot.color, (thisSpot.mapX, thisSpot.mapY, thisSpot.width, thisSpot.width))
+
+    for i in range(len(grid)):
+        pygame.draw.line(win, WHITE, (0, i*width), (len(grid)*width, i*width))
+        for j in range(len(grid[i])):
+            pygame.draw.line(win, WHITE, (j*width, 0), (j*width, len(grid[i])*width ))
+
+    
             
 
 def makeScene(fileName):

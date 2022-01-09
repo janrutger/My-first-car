@@ -10,9 +10,16 @@ GREY = (128, 128, 128)
 sceneMap = utils.makeScene(None)
 print(sceneMap)
 
-win = pygame.display.set_mode((800,800))
+HEIGHT = 800
+WIDTH  = 800
+width  = 20
+
+win = pygame.display.set_mode((HEIGHT,WIDTH))
 pygame.display.set_caption("Map discovery")
 
+grid = utils.makeGrid(HEIGHT, WIDTH, width)
+
+utils.showGrid(win, grid, width)
 
 run = True
 while run:

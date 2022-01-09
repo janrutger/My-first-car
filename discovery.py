@@ -30,7 +30,7 @@ listToDo.append(position)
 
 run = True
 while run:
-    pygame.time.delay(10)
+    #pygame.time.delay(10)
 
     manualCommand = None
     for event in pygame.event.get():
@@ -46,7 +46,7 @@ while run:
         for neighborSpot in neighborSpots:
             if neighborSpot not in listToDo and neighborSpot not in listDone:
                 listToDo.append(neighborSpot)          
-        print(neighbors)
+        #print(neighbors)
         listDone.append(thisSpot)
     else:
         print("Finished")

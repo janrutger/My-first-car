@@ -63,14 +63,13 @@ def findNeigbors(thisSpot, sceneMap, width):
     down  = (thisSpot[X]*width, thisSpot[Y]*width+width)
     left  = (thisSpot[X]*width-width, thisSpot[Y]*width)
 
-    print(up, right, down, left)
+    print("All new>>: ", up, right, down, left)
 
     for direction in [up, right, down, left]:
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
-        color = sceneMap[direction]
-        print(color)
+        
 
 
         if white.all():
@@ -79,14 +78,20 @@ def findNeigbors(thisSpot, sceneMap, width):
             result.append("blocked")
         else:
             print("COLOR MAPPING ERROR, blocked by default")
-            #result.append("blocked")
+            result.append("blocked")
+            print("current: ", thisSpot[X], thisSpot[Y])
+            print("current: ", thisSpot[X]*width, thisSpot[Y]*width)
+            print("All new: ", up, right, down, left)
+            print("Result : ", result)
+            color = sceneMap[direction]
+            print("Color  : ", color)
 
     return(result)
 
 def updateNeigbors(grid, thisSpot, neighbors):
     result = []
     thisSpot=grid[thisSpot[X]][thisSpot[Y]]
-    print(thisSpot.row, thisSpot.col)
+    #print(thisSpot.row, thisSpot.col)
     if neighbors[0] == "open": #UP
         grid[thisSpot.row][thisSpot.col-1].color = WHITE
         grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
@@ -129,26 +134,31 @@ def makeScene(fileName):
     win = pygame.display.set_mode((640,480))
     pygame.display.set_caption("Create scenemap")
 
+    if path.isfile("images/cirkels.png"):
+        image = pygame.image.load("images/cirkels.png")
+    else:
+        image = None
+
+
     run = True
     while run:
         win.fill((0,0,0))  # Fills the screen with black 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        if path.isfile("images/cirkels1.png"):
-            image = pygame.image.load("images/cirkels.png")
+        if image != None:
             win.blit(image, (0,0))
         else:
             #pygame.draw.rect(win, (255,255,255), (40,40,560,400), 0)
             pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
-            # pygame.draw.rect(win, (0,0,0), (80,125,40,100), 0)
+            pygame.draw.rect(win, (0,0,0), (80,125,40,100), 0)
             # pygame.draw.rect(win, (0,0,0), (150,300,40,100), 0)
             # pygame.draw.rect(win, (0,0,0), (430,120,30,100), 0)
             # pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
             # pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
             pygame.draw.rect(win, (0,0,0), (320, 250, 40,40), 0)
             pygame.draw.rect(win, (0,0,0), (180, 200, 40,40), 0)
-            # pygame.draw.rect(win, (0,0,0), (500, 300, 20,20), 0)
+            pygame.draw.rect(win, (0,0,0), (500, 300, 20,20), 0)
             # pygame.draw.rect(win, (0,0,0), (500, 150, 20,20), 0)
 
         sceneMap = pygame.surfarray.array3d(win)

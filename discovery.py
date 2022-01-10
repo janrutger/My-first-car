@@ -7,11 +7,13 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREY = (128, 128, 128)
 
-sceneMap = utils.makeScene(None)
+maxX = 640
+maxY = 480
+sceneMap = utils.makeScene(None, maxX, maxY)
 
 HEIGHT = 800
 WIDTH  = 800
-width  = 20
+width  = 5
 
 listToDo = []
 listDone = []
@@ -40,7 +42,7 @@ while run:
         thisSpot = listToDo[0]
         listToDo.pop(0)
         
-        neighbors = utils.findNeigbors(thisSpot, sceneMap, width)
+        neighbors = utils.findNeigbors(thisSpot, sceneMap, width, maxX, maxY)
         neighborSpots = utils.updateNeigbors(grid, thisSpot, neighbors)
         for neighborSpot in neighborSpots:
             if neighborSpot not in listToDo and neighborSpot not in listDone:

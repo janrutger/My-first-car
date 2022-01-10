@@ -56,7 +56,7 @@ def scanInit(sceneMap, location, width):
     return((row, col), color)
 
 
-def findNeigbors(thisSpot, sceneMap, width):
+def findNeigbors(thisSpot, sceneMap, width, maxX, maxY):
     result = []
     up    = (thisSpot[X]*width, thisSpot[Y]*width-width)
     right = (thisSpot[X]*width+width, thisSpot[Y]*width)
@@ -69,8 +69,13 @@ def findNeigbors(thisSpot, sceneMap, width):
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
+        #if white.all():
+        #    result.append("open")
         if white.all():
-            result.append("open")
+            if direction[X] - width < 0 or direction[X] + width >= maxX or direction[Y] - width < 0 or direction[Y] + width  >= maxY:
+                result.append("blocked")
+            else:
+                result.append("open")
         elif black.all():
             result.append("blocked")
         else:
@@ -126,12 +131,12 @@ def updateNeigbors(grid, thisSpotCor, neighbors):
         grid[thisSpot.row-1][thisSpot.col].spotStatus = "blocked"
     return(result)    
 
-def makeScene(fileName):
+def makeScene(fileName, maxX, maxY):
     pygame.init()
-    win = pygame.display.set_mode((640,480))
+    win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/cirkelsbb.png"):
+    if path.isfile("images/cirkels.png"):
         image = pygame.image.load("images/cirkels.png")
     else:
         image = None

@@ -69,9 +69,6 @@ def findNeigbors(thisSpot, sceneMap, width):
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
-        
-
-
         if white.all():
             result.append("open")
         elif black.all():
@@ -88,9 +85,9 @@ def findNeigbors(thisSpot, sceneMap, width):
 
     return(result)
 
-def updateNeigbors(grid, thisSpot, neighbors):
+def updateNeigbors(grid, thisSpotCor, neighbors):
     result = []
-    thisSpot=grid[thisSpot[X]][thisSpot[Y]]
+    thisSpot=grid[thisSpotCor[X]][thisSpotCor[Y]]
     #print(thisSpot.row, thisSpot.col)
     if neighbors[0] == "open": #UP
         grid[thisSpot.row][thisSpot.col-1].color = WHITE
@@ -134,11 +131,10 @@ def makeScene(fileName):
     win = pygame.display.set_mode((640,480))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/cirkels.png"):
+    if path.isfile("images/cirkelsbb.png"):
         image = pygame.image.load("images/cirkels.png")
     else:
         image = None
-
 
     run = True
     while run:

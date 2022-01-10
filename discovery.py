@@ -11,7 +11,7 @@ sceneMap = utils.makeScene(None)
 
 HEIGHT = 800
 WIDTH  = 800
-width  = 10
+width  = 20
 
 listToDo = []
 listDone = []
@@ -32,7 +32,6 @@ run = True
 while run:
     #pygame.time.delay(10)
 
-    manualCommand = None
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False

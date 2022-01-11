@@ -44,31 +44,25 @@ def showGrid(win, grid):
             pygame.draw.line(win, WHITE, (j*width, 0), (j*width, len(grid[i])*width ))
 
 
-def scanInit(sceneMap, location, width, grid):
+def scanInit(sceneMap, location, width):
     row = location[X] // width
     col = location[Y] // width
-    startSpot = grid[row][col]
     white = sceneMap[location] == WHITE
     if white.all():
-        startSpot.color = WHITE
-        startSpot.spotStatus = "open"
+        color = WHITE
     else:
         print("ERROR: starting point non white")
+        color = GREY
 
-    return(startSpot)
+    return((row, col), color)
 
 
-def findNeigbors(thisSpot, sceneMap, maxX, maxY):
+def findNeigbors(thisSpot, sceneMap, width, maxX, maxY):
     result = []
-    width = thisSpot.width
-    # up    = (thisSpot[X]*width, thisSpot[Y]*width-width)
-    # right = (thisSpot[X]*width+width, thisSpot[Y]*width)
-    # down  = (thisSpot[X]*width, thisSpot[Y]*width+width)
-    # left  = (thisSpot[X]*width-width, thisSpot[Y]*width)
-    up    = (thisSpot.mapX, thisSpot.mapY-width)
-    right = (thisSpot.mapX+width, thisSpot.mapY)
-    down  = (thisSpot.mapX, thisSpot.mapY+width)
-    left  = (thisSpot.mapX-width, thisSpot.mapY)
+    up    = (thisSpot[X]*width, thisSpot[Y]*width-width)
+    right = (thisSpot[X]*width+width, thisSpot[Y]*width)
+    down  = (thisSpot[X]*width, thisSpot[Y]*width+width)
+    left  = (thisSpot[X]*width-width, thisSpot[Y]*width)
 
     print("All new>>: ", up, right, down, left)
 
@@ -78,17 +72,18 @@ def findNeigbors(thisSpot, sceneMap, maxX, maxY):
 
         #if white.all():
         #    result.append("open")
-        if direction[X] - width < 0 or direction[X] + width >= maxX or direction[Y] - width < 0 or direction[Y] + width  >= maxY:
+        if white.all():
+            if direction[X] - width < 0 or direction[X] + width >= maxX or direction[Y] - width < 0 or direction[Y] + width  >= maxY:
                 result.append("blocked")
-        elif white.all():
+            else:
                 result.append("open")
         elif black.all():
             result.append("blocked")
         else:
             print("COLOR MAPPING ERROR, blocked by default")
             result.append("blocked")
-            print("current: ", thisSpot.row, thisSpot.col)
-            print("current: ", thisSpot.mapX, thisSpot.mapY)
+            print("current: ", thisSpot[X], thisSpot[Y])
+            print("current: ", thisSpot[X]*width, thisSpot[Y]*width)
             print("All new: ", up, right, down, left)
             print("Result : ", result)
             color = sceneMap[direction]
@@ -96,16 +91,15 @@ def findNeigbors(thisSpot, sceneMap, maxX, maxY):
 
     return(result)
 
-def updateNeigbors(grid, thisSpot, neighbors):
+def updateNeigbors(grid, thisSpotCor, neighbors):
     result = []
-    #thisSpot=grid[thisSpotCor[X]][thisSpotCor[Y]]
+    thisSpot=grid[thisSpotCor[X]][thisSpotCor[Y]]
     #print(thisSpot.row, thisSpot.col)
     if neighbors[0] == "open": #UP
         grid[thisSpot.row][thisSpot.col-1].color = WHITE
         grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
         grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col-1))
-        #result.append((thisSpot.row, thisSpot.col-1))
-        result.append(grid[thisSpot.row][thisSpot.col-1])
+        result.append((thisSpot.row, thisSpot.col-1))
     if neighbors[0] == "blocked": #UP
         grid[thisSpot.row][thisSpot.col-1].color = BLACK
         grid[thisSpot.row][thisSpot.col-1].spotStatus = "blocked"
@@ -114,8 +108,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row+1][thisSpot.col].color = WHITE
         grid[thisSpot.row+1][thisSpot.col].spotStatus = "open"
         grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row+1, thisSpot.col))
-        #result.append((thisSpot.row+1, thisSpot.col))
-        result.append(grid[thisSpot.row+1][thisSpot.col])
+        result.append((thisSpot.row+1, thisSpot.col))
     if neighbors[1] == "blocked": #RIGHT
         grid[thisSpot.row+1][thisSpot.col].color = BLACK
         grid[thisSpot.row+1][thisSpot.col].spotStatus = "blocked"
@@ -124,8 +117,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row][thisSpot.col+1].color = WHITE
         grid[thisSpot.row][thisSpot.col+1].spotStatus = "open"
         grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col+1))
-        #result.append((thisSpot.row, thisSpot.col+1))
-        result.append(grid[thisSpot.row][thisSpot.col+1])
+        result.append((thisSpot.row, thisSpot.col+1))
     if neighbors[2] == "blocked": #DOWN
         grid[thisSpot.row][thisSpot.col+1].color = BLACK
         grid[thisSpot.row][thisSpot.col+1].spotStatus = "blocked"
@@ -134,8 +126,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row-1][thisSpot.col].color = WHITE
         grid[thisSpot.row-1][thisSpot.col].spotStatus = "open"
         grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row-1, thisSpot.col))
-        #result.append((thisSpot.row-1, thisSpot.col))
-        result.append(grid[thisSpot.row-1][thisSpot.col])
+        result.append((thisSpot.row-1, thisSpot.col))
     if neighbors[3] == "blocked": #LEFT
         grid[thisSpot.row-1][thisSpot.col].color = BLACK
         grid[thisSpot.row-1][thisSpot.col].spotStatus = "blocked"

@@ -22,9 +22,11 @@ win = pygame.display.set_mode((HEIGHT,WIDTH))
 pygame.display.set_caption("Map discovery")
 
 grid = utils.makeGrid(HEIGHT, WIDTH, width)
-startLocation = (320,240)
-startSpot = utils.scanInit(sceneMap, startLocation, width, grid)
-listToDo.append(startSpot)
+sceneLocation = (320,240)
+position, color = utils.scanInit(sceneMap, sceneLocation, width)
+grid[position[0]][position[1]].color = color
+grid[position[0]][position[1]].spotStatus = "open"
+listToDo.append(position)
 
 
 
@@ -40,8 +42,8 @@ while run:
         thisSpot = listToDo[0]
         listToDo.pop(0)
         
-        neighborsStatus = utils.findNeigbors(thisSpot, sceneMap, maxX, maxY)
-        neighborSpots   = utils.updateNeigbors(grid, thisSpot, neighborsStatus)
+        neighbors = utils.findNeigbors(thisSpot, sceneMap, width, maxX, maxY)
+        neighborSpots = utils.updateNeigbors(grid, thisSpot, neighbors)
         for neighborSpot in neighborSpots:
             if neighborSpot not in listToDo and neighborSpot not in listDone:
                 listToDo.append(neighborSpot)          

@@ -51,12 +51,17 @@ while run:
         listDone.append(thisSpot)
     else:
         print("Finished")
-        #utils.showGrid(win, grid)
+        utils.showGrid(win, grid)
 
 
     ##Some more code here
   
-    utils.showGrid(win, grid)
+    #utils.showGrid(win, grid)
     pygame.display.update() #update screen
 
 pygame.quit()
+
+print("next")
+import astar
+
+astar.start(grid, width)

@@ -149,7 +149,7 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/cirkels.png"):
+    if path.isfile("images/cirkelsGG.png"):
         image = pygame.image.load("images/cirkels.png")
     else:
         image = None
@@ -166,14 +166,14 @@ def makeScene(fileName, maxX, maxY):
             #pygame.draw.rect(win, (255,255,255), (40,40,560,400), 0)
             pygame.draw.rect(win, (255,255,255), (20,20,600,440), 0)
             pygame.draw.rect(win, (0,0,0), (80,125,40,100), 0)
-            # pygame.draw.rect(win, (0,0,0), (150,300,40,100), 0)
-            # pygame.draw.rect(win, (0,0,0), (430,120,30,100), 0)
-            # pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
-            # pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
+            pygame.draw.rect(win, (0,0,0), (150,300,40,100), 0)
+            pygame.draw.rect(win, (0,0,0), (430,120,30,100), 0)
+            pygame.draw.rect(win, (0,0,0), (300,0,50,150), 0)
+            pygame.draw.rect(win, (0,0,0), (380,375,125,30), 0)
             pygame.draw.rect(win, (0,0,0), (320, 250, 40,40), 0)
             pygame.draw.rect(win, (0,0,0), (180, 200, 40,40), 0)
             pygame.draw.rect(win, (0,0,0), (500, 300, 20,20), 0)
-            # pygame.draw.rect(win, (0,0,0), (500, 150, 20,20), 0)
+            pygame.draw.rect(win, (0,0,0), (500, 150, 20,20), 0)
 
         sceneMap = pygame.surfarray.array3d(win)
         pygame.display.update() #update screen

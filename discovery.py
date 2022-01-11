@@ -13,7 +13,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 HEIGHT = 800 #canvas win
 WIDTH  = 800 #canvas win
-width  = 10  #spot
+width  = 20  #spot
 
 listToDo = []
 listDone = []

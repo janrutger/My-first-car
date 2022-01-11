@@ -98,8 +98,8 @@ def findNeigbors(thisSpot, sceneMap, maxX, maxY):
 
 def updateNeigbors(grid, thisSpot, neighbors):
     result = []
-    #thisSpot=grid[thisSpotCor[X]][thisSpotCor[Y]]
-    #print(thisSpot.row, thisSpot.col)
+
+    #Direction is UP
     if neighbors[0] == "open": #UP
         grid[thisSpot.row][thisSpot.col-1].color = WHITE
         grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
@@ -110,6 +110,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row][thisSpot.col-1].color = BLACK
         grid[thisSpot.row][thisSpot.col-1].spotStatus = "blocked"
 
+    #Direction is RIGHT
     if neighbors[1] == "open": #RIGHT
         grid[thisSpot.row+1][thisSpot.col].color = WHITE
         grid[thisSpot.row+1][thisSpot.col].spotStatus = "open"
@@ -120,6 +121,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row+1][thisSpot.col].color = BLACK
         grid[thisSpot.row+1][thisSpot.col].spotStatus = "blocked"
 
+    #Direction is DOWN
     if neighbors[2] == "open": #DOWN
         grid[thisSpot.row][thisSpot.col+1].color = WHITE
         grid[thisSpot.row][thisSpot.col+1].spotStatus = "open"
@@ -130,6 +132,7 @@ def updateNeigbors(grid, thisSpot, neighbors):
         grid[thisSpot.row][thisSpot.col+1].color = BLACK
         grid[thisSpot.row][thisSpot.col+1].spotStatus = "blocked"
 
+    #Direction is LEFT
     if neighbors[3] == "open": #LEFT
         grid[thisSpot.row-1][thisSpot.col].color = WHITE
         grid[thisSpot.row-1][thisSpot.col].spotStatus = "open"

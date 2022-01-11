@@ -31,12 +31,13 @@ def makeGrid(HEIGHT, WIDTH, width):
             grid[row].append(spot)
     return(grid)
 
-def showGrid(win, grid, width):
+def showGrid(win, grid):
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             thisSpot = grid[i][j]
             pygame.draw.rect(win, thisSpot.color, (thisSpot.mapX, thisSpot.mapY, thisSpot.width, thisSpot.width))
 
+    width = thisSpot.width
     for i in range(len(grid)):
         pygame.draw.line(win, WHITE, (0, i*width), (len(grid)*width, i*width))
         for j in range(len(grid[i])):

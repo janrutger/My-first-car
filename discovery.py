@@ -13,7 +13,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 HEIGHT = 800
 WIDTH  = 800
-width  = 5
+width  = 10
 
 listToDo = []
 listDone = []
@@ -51,11 +51,12 @@ while run:
         listDone.append(thisSpot)
     else:
         print("Finished")
+        #utils.showGrid(win, grid)
 
 
     ##Some more code here
   
-    utils.showGrid(win, grid, width)
+    utils.showGrid(win, grid)
     pygame.display.update() #update screen
 
 pygame.quit()

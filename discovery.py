@@ -11,9 +11,9 @@ maxX = 640 #width of scene/PNG
 maxY = 480 #heiht of scene/PNG
 sceneMap = utils.makeScene(None, maxX, maxY)
 
-HEIGHT = 800 #canvas win
-WIDTH  = 800 #canvas win
-width  = 20  #spot
+HEIGHT = 700 #canvas win
+WIDTH  = 700 #canvas win
+width  = 20   #spot
 
 listToDo = []
 listDone = []
@@ -51,12 +51,12 @@ while run:
         listDone.append(thisSpot)
     else:
         print("Finished")
-        utils.showGrid(win, grid)
+        #utils.showGrid(win, grid)
 
 
     ##Some more code here
   
-    #utils.showGrid(win, grid)
+    utils.showGrid(win, grid)
     pygame.display.update() #update screen
 
 pygame.quit()

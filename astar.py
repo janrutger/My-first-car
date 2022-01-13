@@ -1,6 +1,4 @@
 import pygame
-#import utils
-#import math
 from queue import PriorityQueue
 from scipy.spatial import distance
 
@@ -19,10 +17,8 @@ TURQUOISE = (64, 224, 208)
 
 
 def h(p1, p2):
-	x1 = p1[0]
-	y1 = p1[1]
-	x2 = p2[0]
-	y2 = p2[1]
+	x1, y1 = p1
+	x2, y2 = p2
 	return distance.euclidean([x1, y1], [x2, y2])
 	#return abs(x1 - x2) + abs(y1 - y2)
 
@@ -79,73 +75,9 @@ def algorithm(draw, grid, start, end):
 					neighbor.color = TURQUOISE
 
 		draw()
-		#pygame.display.update() #update screen
 
 		if current != start:
 			current.color = WHITE
 
 	return False
 
-
-# def get_clicked_pos(pos, width):
-# 	y, x = pos
-
-# 	row = y // width
-# 	col = x // width
-
-# 	return row, col
-
-
-# def start(grid, width):
-# 	WIDTH = 700
-# 	win = pygame.display.set_mode((WIDTH, 500))
-# 	pygame.display.set_caption("A* Path Finding Algorithm")
-
-
-# 	# start = None
-# 	# end = None
-
-# 	run = True
-# 	while run:
-# 		#draw(win, grid, ROWS, width)
-# 		utils.showGrid(win, grid)
-# 		# for event in pygame.event.get():
-# 		# 	if event.type == pygame.QUIT:
-# 		# 		run = False
-
-# 		# 	if pygame.mouse.get_pressed()[0]: # LEFT
-# 		# 		pos = pygame.mouse.get_pos()
-# 		# 		row, col = utils.get_clicked_pos(pos, width)
-# 		# 		spot = grid[row][col]
-# 		# 		if not start and spot != end:
-# 		# 			start = spot
-# 		# 			#start.make_start()
-# 		# 			start.color = RED
-
-# 		# 		elif not end and spot != start:
-# 		# 			end = spot
-# 		# 			end.color = GREEN
-# 		# 			#end.make_end()
-
-
-# 		# 	elif pygame.mouse.get_pressed()[2]: # RIGHT
-# 		# 		pos = pygame.mouse.get_pos()
-# 		# 		row, col = utils.get_clicked_pos(pos, width)
-# 		# 		spot = grid[row][col]
-# 		# 		spot.color = WHITE
-# 		# 		#spot.reset()
-# 		# 		if spot == start:
-# 		# 			start = None
-# 		# 		elif spot == end:
-# 		# 			end = None
-
-# 		# 	if event.type == pygame.KEYDOWN:
-# 		# 		if event.key == pygame.K_SPACE and start and end:
-# 		# 			#algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
-# 		# 			algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
-
-# 		#pygame.display.update() #update screen
-
-# 	pygame.quit()
-
-# #main(WIN, WIDTH)

@@ -62,7 +62,7 @@ while run:
                     listToDo.append(neighborSpot)          
             #print(neighbors)
             listDone.append(thisSpot)
-            #utils.showGrid(win, grid)
+            utils.showGrid(win, grid)
         else:
             print("Finished")
             gridReady = True
@@ -110,11 +110,6 @@ while run:
                     astar.algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
 
 
-
-    ##Some more code here
-  
-    #utils.showGrid(win, grid) #include: pygame.display.update()
-    #pygame.display.update() #update screen
 
 pygame.quit()
 

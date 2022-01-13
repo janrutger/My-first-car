@@ -181,3 +181,12 @@ def makeScene(fileName, maxX, maxY):
     pygame.quit()
 
     return(sceneMap)
+
+
+def get_clicked_pos(pos, width):
+    y, x = pos
+
+    row = y // width
+    col = x // width
+
+    return row, col

@@ -1,6 +1,6 @@
 import pygame
-import utils
-import math
+#import utils
+#import math
 from queue import PriorityQueue
 from scipy.spatial import distance
 
@@ -87,65 +87,65 @@ def algorithm(draw, grid, start, end):
 	return False
 
 
-def get_clicked_pos(pos, width):
-	y, x = pos
+# def get_clicked_pos(pos, width):
+# 	y, x = pos
 
-	row = y // width
-	col = x // width
+# 	row = y // width
+# 	col = x // width
 
-	return row, col
-
-
-def start(grid, width):
-	WIDTH = 700
-	win = pygame.display.set_mode((WIDTH, 500))
-	pygame.display.set_caption("A* Path Finding Algorithm")
+# 	return row, col
 
 
-	start = None
-	end = None
-
-	run = True
-	while run:
-		#draw(win, grid, ROWS, width)
-		utils.showGrid(win, grid)
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				run = False
-
-			if pygame.mouse.get_pressed()[0]: # LEFT
-				pos = pygame.mouse.get_pos()
-				row, col = get_clicked_pos(pos, width)
-				spot = grid[row][col]
-				if not start and spot != end:
-					start = spot
-					#start.make_start()
-					start.color = RED
-
-				elif not end and spot != start:
-					end = spot
-					end.color = GREEN
-					#end.make_end()
+# def start(grid, width):
+# 	WIDTH = 700
+# 	win = pygame.display.set_mode((WIDTH, 500))
+# 	pygame.display.set_caption("A* Path Finding Algorithm")
 
 
-			elif pygame.mouse.get_pressed()[2]: # RIGHT
-				pos = pygame.mouse.get_pos()
-				row, col = get_clicked_pos(pos, width)
-				spot = grid[row][col]
-				spot.color = WHITE
-				#spot.reset()
-				if spot == start:
-					start = None
-				elif spot == end:
-					end = None
+# 	# start = None
+# 	# end = None
 
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_SPACE and start and end:
-					#algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
-					algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
+# 	run = True
+# 	while run:
+# 		#draw(win, grid, ROWS, width)
+# 		utils.showGrid(win, grid)
+# 		# for event in pygame.event.get():
+# 		# 	if event.type == pygame.QUIT:
+# 		# 		run = False
 
-		#pygame.display.update() #update screen
+# 		# 	if pygame.mouse.get_pressed()[0]: # LEFT
+# 		# 		pos = pygame.mouse.get_pos()
+# 		# 		row, col = utils.get_clicked_pos(pos, width)
+# 		# 		spot = grid[row][col]
+# 		# 		if not start and spot != end:
+# 		# 			start = spot
+# 		# 			#start.make_start()
+# 		# 			start.color = RED
 
-	pygame.quit()
+# 		# 		elif not end and spot != start:
+# 		# 			end = spot
+# 		# 			end.color = GREEN
+# 		# 			#end.make_end()
 
-#main(WIN, WIDTH)
+
+# 		# 	elif pygame.mouse.get_pressed()[2]: # RIGHT
+# 		# 		pos = pygame.mouse.get_pos()
+# 		# 		row, col = utils.get_clicked_pos(pos, width)
+# 		# 		spot = grid[row][col]
+# 		# 		spot.color = WHITE
+# 		# 		#spot.reset()
+# 		# 		if spot == start:
+# 		# 			start = None
+# 		# 		elif spot == end:
+# 		# 			end = None
+
+# 		# 	if event.type == pygame.KEYDOWN:
+# 		# 		if event.key == pygame.K_SPACE and start and end:
+# 		# 			#algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
+# 		# 			algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
+
+# 		#pygame.display.update() #update screen
+
+# 	pygame.quit()
+
+# #main(WIN, WIDTH)

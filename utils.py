@@ -42,6 +42,7 @@ def showGrid(win, grid):
         pygame.draw.line(win, WHITE, (0, i*width), (len(grid)*width, i*width))
         for j in range(len(grid[i])):
             pygame.draw.line(win, WHITE, (j*width, 0), (j*width, len(grid[i])*width ))
+    pygame.display.update() #update screen
 
 
 def scanInit(sceneMap, location, width, grid):
@@ -149,7 +150,7 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/JR-Straat.png"):
+    if path.isfile("images/JR-Straatbb.png"):
         image = pygame.image.load("images/JR-Straat.png")
     else:
         image = None

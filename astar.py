@@ -79,7 +79,7 @@ def algorithm(draw, grid, start, end):
 					neighbor.color = TURQUOISE
 
 		draw()
-		pygame.display.update() #update screen
+		#pygame.display.update() #update screen
 
 		if current != start:
 			current.color = WHITE
@@ -144,7 +144,7 @@ def start(grid, width):
 					#algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
 					algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
 
-		pygame.display.update() #update screen
+		#pygame.display.update() #update screen
 
 	pygame.quit()
 

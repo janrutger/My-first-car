@@ -13,7 +13,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 HEIGHT = 700 #canvas win
 WIDTH  = 700 #canvas win
-width  = 20   #spot
+width  = 10   #spot
 
 listToDo = []
 listDone = []
@@ -56,8 +56,8 @@ while run:
 
     ##Some more code here
   
-    utils.showGrid(win, grid)
-    pygame.display.update() #update screen
+    utils.showGrid(win, grid) #include: pygame.display.update()
+    #pygame.display.update() #update screen
 
 pygame.quit()
 

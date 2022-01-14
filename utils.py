@@ -22,11 +22,11 @@ class Spot:
         self.neighbors = []
 
 
-def makeGrid(HEIGHT, WIDTH, width):
+def makeGrid(WIDTH,HEIGHT, width):
     grid = []
-    for row in range(0, HEIGHT // width):
+    for row in range(0, WIDTH // width):
         grid.append([])
-        for col in range(0, WIDTH // width):
+        for col in range(0, HEIGHT // width):
             spot = Spot(row, col, width)
             grid[row].append(spot)
     return(grid)
@@ -38,11 +38,15 @@ def showGrid(win, grid):
             pygame.draw.rect(win, thisSpot.color, (thisSpot.mapX, thisSpot.mapY, thisSpot.width, thisSpot.width))
 
     width = thisSpot.width
-    for i in range(len(grid)):
-        pygame.draw.line(win, WHITE, (0, i*width), (len(grid)*width, i*width))
-        for j in range(len(grid[i])):
-            pygame.draw.line(win, WHITE, (j*width, 0), (j*width, len(grid[i])*width ))
+    lenRow = len(grid)  #this code is just working, it not correct i think
+    for row in range(lenRow):
+        lenHeight = len(grid[row])
+        pygame.draw.line(win, WHITE, (0, row*width), ((lenRow*width, row*width))) #Horizental
+    for col in range(lenRow):
+        pygame.draw.line(win, WHITE, ( col*width, 0), ( col*width, lenHeight*width+width) ) #Vertikaal
+            
     pygame.display.update() #update screen
+
 
 
 def scanInit(sceneMap, location, width, grid):

@@ -19,19 +19,19 @@ maxX = 640 #width of scene/PNG
 maxY = 480 #heiht of scene/PNG
 sceneMap = utils.makeScene(None, maxX, maxY)
 
-HEIGHT = 700 #canvas win
-WIDTH  = 700 #canvas win
+WIDTH  = 700 #canvas win X-ax
+HEIGHT = 500 #canvas win Y-ax
 width  = 10   #spot
 
 listToDo = []
 listDone = []
 
 #CANVAS
-win = pygame.display.set_mode((HEIGHT,WIDTH))
+win = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Map discovery")
 
 #make Grid en find spot to start
-grid = utils.makeGrid(HEIGHT, WIDTH, width)
+grid = utils.makeGrid(WIDTH, HEIGHT, width)
 startLocation = (360,240)
 startSpot = utils.scanInit(sceneMap, startLocation, width, grid)
 listToDo.append(startSpot)
@@ -39,12 +39,6 @@ listToDo.append(startSpot)
 
 gridReady = False
 run = True
-# while run:
-#     #pygame.time.delay(10)
-
-#     for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 run = False
 
 while run and not gridReady:
     for event in pygame.event.get():

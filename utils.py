@@ -59,13 +59,9 @@ def scanInit(sceneMap, location, width, grid):
     return(startSpot)
 
 
-def findNeigbors(thisSpot, sceneMap, maxX, maxY):
+def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     result = []
     width = thisSpot.width
-    # up    = (thisSpot[X]*width, thisSpot[Y]*width-width)
-    # right = (thisSpot[X]*width+width, thisSpot[Y]*width)
-    # down  = (thisSpot[X]*width, thisSpot[Y]*width+width)
-    # left  = (thisSpot[X]*width-width, thisSpot[Y]*width)
     up    = (thisSpot.mapX, thisSpot.mapY-width)
     right = (thisSpot.mapX+width, thisSpot.mapY)
     down  = (thisSpot.mapX, thisSpot.mapY+width)
@@ -129,49 +125,6 @@ def setNeigbors(grid, thisSpot, neighborsStatus):
     return(neighborSpots)
 
 
-    # if neighborsStatus[0] == "open": #UP
-    #     grid[thisSpot.row][thisSpot.col-1].color = WHITE
-    #     grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
-    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col-1))
-    #     #result.append((thisSpot.row, thisSpot.col-1))
-    #     result.append(grid[thisSpot.row][thisSpot.col-1])
-    # if neighborsStatus[0] == "blocked": #UP
-    #     grid[thisSpot.row][thisSpot.col-1].color = BLACK
-    #     grid[thisSpot.row][thisSpot.col-1].spotStatus = "blocked"
-
-    #Direction is RIGHT
-    # if neighborsStatus[1] == "open": #RIGHT
-    #     grid[thisSpot.row+1][thisSpot.col].color = WHITE
-    #     grid[thisSpot.row+1][thisSpot.col].spotStatus = "open"
-    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row+1, thisSpot.col))
-    #     #result.append((thisSpot.row+1, thisSpot.col))
-    #     result.append(grid[thisSpot.row+1][thisSpot.col])
-    # if neighborsStatus[1] == "blocked": #RIGHT
-    #     grid[thisSpot.row+1][thisSpot.col].color = BLACK
-    #     grid[thisSpot.row+1][thisSpot.col].spotStatus = "blocked"
-
-    #Direction is DOWN
-    # if neighborsStatus[2] == "open": #DOWN
-    #     grid[thisSpot.row][thisSpot.col+1].color = WHITE
-    #     grid[thisSpot.row][thisSpot.col+1].spotStatus = "open"
-    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col+1))
-    #     #result.append((thisSpot.row, thisSpot.col+1))
-    #     result.append(grid[thisSpot.row][thisSpot.col+1])
-    # if neighborsStatus[2] == "blocked": #DOWN
-    #     grid[thisSpot.row][thisSpot.col+1].color = BLACK
-    #     grid[thisSpot.row][thisSpot.col+1].spotStatus = "blocked"
-
-    #Direction is LEFT
-    # if neighborsStatus[3] == "open": #LEFT
-    #     grid[thisSpot.row-1][thisSpot.col].color = WHITE
-    #     grid[thisSpot.row-1][thisSpot.col].spotStatus = "open"
-    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row-1, thisSpot.col))
-    #     #result.append((thisSpot.row-1, thisSpot.col))
-    #     result.append(grid[thisSpot.row-1][thisSpot.col])
-    # if neighborsStatus[3] == "blocked": #LEFT
-    #     grid[thisSpot.row-1][thisSpot.col].color = BLACK
-    #     grid[thisSpot.row-1][thisSpot.col].spotStatus = "blocked"
-    # return(result)    
 
 def makeScene(fileName, maxX, maxY):
     pygame.init()

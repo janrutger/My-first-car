@@ -97,53 +97,81 @@ def findNeigbors(thisSpot, sceneMap, maxX, maxY):
 
     return(result)
 
-def updateNeigbors(grid, thisSpot, neighbors):
-    result = []
+def setSpot(thatSpot, thisSpot, neighborsStatus, neighborSpots):
+    if neighborsStatus == "open":
+        thatSpot.status = "open"
+        thatSpot.color = WHITE
+        thisSpot.neighbors.append(thatSpot)
+        neighborSpots.append(thatSpot)
+    elif neighborsStatus == "blocked":
+        thatSpot.status = "blocked"
+        thatSpot.color = BLACK
+    return(neighborSpots)
+
+
+
+def setNeigbors(grid, thisSpot, neighborsStatus):
+    neighborSpots = []
 
     #Direction is UP
-    if neighbors[0] == "open": #UP
-        grid[thisSpot.row][thisSpot.col-1].color = WHITE
-        grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
-        grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col-1))
-        #result.append((thisSpot.row, thisSpot.col-1))
-        result.append(grid[thisSpot.row][thisSpot.col-1])
-    if neighbors[0] == "blocked": #UP
-        grid[thisSpot.row][thisSpot.col-1].color = BLACK
-        grid[thisSpot.row][thisSpot.col-1].spotStatus = "blocked"
+    upSpot = grid[thisSpot.row][thisSpot.col-1]
+    neighborSpots = setSpot(upSpot, thisSpot, neighborsStatus[0], neighborSpots)
+
+    rightSpot = grid[thisSpot.row+1][thisSpot.col]
+    neighborSpots = setSpot(rightSpot, thisSpot, neighborsStatus[1], neighborSpots)
+
+    downSpot = grid[thisSpot.row][thisSpot.col+1]
+    neighborSpots = setSpot(downSpot, thisSpot, neighborsStatus[2], neighborSpots)
+
+    leftSpot = grid[thisSpot.row-1][thisSpot.col]
+    neighborSpots = setSpot(leftSpot, thisSpot, neighborsStatus[3], neighborSpots)
+
+    return(neighborSpots)
+
+
+    # if neighborsStatus[0] == "open": #UP
+    #     grid[thisSpot.row][thisSpot.col-1].color = WHITE
+    #     grid[thisSpot.row][thisSpot.col-1].spotStatus = "open"
+    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col-1))
+    #     #result.append((thisSpot.row, thisSpot.col-1))
+    #     result.append(grid[thisSpot.row][thisSpot.col-1])
+    # if neighborsStatus[0] == "blocked": #UP
+    #     grid[thisSpot.row][thisSpot.col-1].color = BLACK
+    #     grid[thisSpot.row][thisSpot.col-1].spotStatus = "blocked"
 
     #Direction is RIGHT
-    if neighbors[1] == "open": #RIGHT
-        grid[thisSpot.row+1][thisSpot.col].color = WHITE
-        grid[thisSpot.row+1][thisSpot.col].spotStatus = "open"
-        grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row+1, thisSpot.col))
-        #result.append((thisSpot.row+1, thisSpot.col))
-        result.append(grid[thisSpot.row+1][thisSpot.col])
-    if neighbors[1] == "blocked": #RIGHT
-        grid[thisSpot.row+1][thisSpot.col].color = BLACK
-        grid[thisSpot.row+1][thisSpot.col].spotStatus = "blocked"
+    # if neighborsStatus[1] == "open": #RIGHT
+    #     grid[thisSpot.row+1][thisSpot.col].color = WHITE
+    #     grid[thisSpot.row+1][thisSpot.col].spotStatus = "open"
+    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row+1, thisSpot.col))
+    #     #result.append((thisSpot.row+1, thisSpot.col))
+    #     result.append(grid[thisSpot.row+1][thisSpot.col])
+    # if neighborsStatus[1] == "blocked": #RIGHT
+    #     grid[thisSpot.row+1][thisSpot.col].color = BLACK
+    #     grid[thisSpot.row+1][thisSpot.col].spotStatus = "blocked"
 
     #Direction is DOWN
-    if neighbors[2] == "open": #DOWN
-        grid[thisSpot.row][thisSpot.col+1].color = WHITE
-        grid[thisSpot.row][thisSpot.col+1].spotStatus = "open"
-        grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col+1))
-        #result.append((thisSpot.row, thisSpot.col+1))
-        result.append(grid[thisSpot.row][thisSpot.col+1])
-    if neighbors[2] == "blocked": #DOWN
-        grid[thisSpot.row][thisSpot.col+1].color = BLACK
-        grid[thisSpot.row][thisSpot.col+1].spotStatus = "blocked"
+    # if neighborsStatus[2] == "open": #DOWN
+    #     grid[thisSpot.row][thisSpot.col+1].color = WHITE
+    #     grid[thisSpot.row][thisSpot.col+1].spotStatus = "open"
+    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row, thisSpot.col+1))
+    #     #result.append((thisSpot.row, thisSpot.col+1))
+    #     result.append(grid[thisSpot.row][thisSpot.col+1])
+    # if neighborsStatus[2] == "blocked": #DOWN
+    #     grid[thisSpot.row][thisSpot.col+1].color = BLACK
+    #     grid[thisSpot.row][thisSpot.col+1].spotStatus = "blocked"
 
     #Direction is LEFT
-    if neighbors[3] == "open": #LEFT
-        grid[thisSpot.row-1][thisSpot.col].color = WHITE
-        grid[thisSpot.row-1][thisSpot.col].spotStatus = "open"
-        grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row-1, thisSpot.col))
-        #result.append((thisSpot.row-1, thisSpot.col))
-        result.append(grid[thisSpot.row-1][thisSpot.col])
-    if neighbors[3] == "blocked": #LEFT
-        grid[thisSpot.row-1][thisSpot.col].color = BLACK
-        grid[thisSpot.row-1][thisSpot.col].spotStatus = "blocked"
-    return(result)    
+    # if neighborsStatus[3] == "open": #LEFT
+    #     grid[thisSpot.row-1][thisSpot.col].color = WHITE
+    #     grid[thisSpot.row-1][thisSpot.col].spotStatus = "open"
+    #     grid[thisSpot.row][thisSpot.col].neighbors.append((thisSpot.row-1, thisSpot.col))
+    #     #result.append((thisSpot.row-1, thisSpot.col))
+    #     result.append(grid[thisSpot.row-1][thisSpot.col])
+    # if neighborsStatus[3] == "blocked": #LEFT
+    #     grid[thisSpot.row-1][thisSpot.col].color = BLACK
+    #     grid[thisSpot.row-1][thisSpot.col].spotStatus = "blocked"
+    # return(result)    
 
 def makeScene(fileName, maxX, maxY):
     pygame.init()

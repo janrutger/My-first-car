@@ -59,8 +59,8 @@ def algorithm(draw, grid, start, end):
 			start.color = RED
 			return True
 
-		for neighborCor in current.neighbors:
-			neighbor = grid[neighborCor[0]][neighborCor[1]]
+		for neighbor in current.neighbors:
+			#neighbor = grid[neighborCor[0]][neighborCor[1]]
 			temp_g_score = g_score[current] + 1
 
 			if temp_g_score < g_score[neighbor]:

@@ -104,6 +104,18 @@ def getNeigbors(grid, thisSpot):
     leftSpot = grid[thisSpot.row-1][thisSpot.col]
     return((upSpot, rightSpot, downSpot, leftSpot))
 
+def traceNeigbors(grid):
+     for row in range(len(grid)):
+         for col in range(len(grid[row])):
+             thisSpot = grid[row][col]
+             if thisSpot.spotStatus == "open":
+                 thisSpot.neighbors = []
+                 thatSpots = getNeigbors(grid,thisSpot)
+                 for thatSpot in thatSpots:
+                     if thatSpot.spotStatus == "open":
+                         thisSpot.neighbors.append(thatSpot)
+
+
 def setSpot(thatSpot, thisSpot, neighborsStatus, neighborSpots):
     if neighborsStatus == "open":
         thatSpot.status = "open"

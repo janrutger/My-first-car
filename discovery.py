@@ -21,7 +21,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 WIDTH  = 700 #canvas win X-ax
 HEIGHT = 500 #canvas win Y-ax
-width  = 20  #spot
+width  = 10  #spot
 
 listToDo = []
 listDone = []
@@ -64,6 +64,8 @@ while run and not gridReady:
         pygame.display.set_caption("A* Path Finding Algorithm")
         start = None
         end = None
+
+utils.traceNeigbors(grid)
 
 while run and gridReady:
     utils.showGrid(win, grid)

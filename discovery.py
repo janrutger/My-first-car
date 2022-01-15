@@ -21,7 +21,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 WIDTH  = 700 #canvas win X-ax
 HEIGHT = 500 #canvas win Y-ax
-width  = 10  #spot
+width  = 6  #spot
 
 listToDo = []
 listDone = []
@@ -56,7 +56,7 @@ while run and not gridReady:
                 listToDo.append(neighborSpot)          
         #print(neighbors)
         listDone.append(thisSpot)
-        utils.showGrid(win, grid)
+        #utils.showGrid(win, grid)
     else:
         print("Finished")
         gridReady = True
@@ -65,7 +65,8 @@ while run and not gridReady:
         start = None
         end = None
 
-utils.traceNeigbors(grid)
+#utils.traceNeigbors(grid)
+utils.makeBorder(grid)
 
 while run and gridReady:
     utils.showGrid(win, grid)

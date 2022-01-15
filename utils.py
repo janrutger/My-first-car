@@ -4,6 +4,7 @@ import os.path as path
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREY = (128, 128, 128)
+YELLOW = (255, 255, 0)
 
 X=0
 Y=1
@@ -105,25 +106,36 @@ def getNeigbors(grid, thisSpot):
     return((upSpot, rightSpot, downSpot, leftSpot))
 
 def traceNeigbors(grid):
-     for row in range(len(grid)):
-         for col in range(len(grid[row])):
-             thisSpot = grid[row][col]
-             if thisSpot.spotStatus == "open":
-                 thisSpot.neighbors = []
-                 thatSpots = getNeigbors(grid,thisSpot)
-                 for thatSpot in thatSpots:
-                     if thatSpot.spotStatus == "open":
-                         thisSpot.neighbors.append(thatSpot)
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            thisSpot = grid[row][col]
+            if thisSpot.spotStatus == "open":
+                thisSpot.neighbors = []
+                thatSpots = getNeigbors(grid,thisSpot)
+                for thatSpot in thatSpots:
+                    if thatSpot.spotStatus == "open":
+                        thisSpot.neighbors.append(thatSpot)
+
+def makeBorder(grid):
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            thisSpot = grid[row][col]
+            if thisSpot.spotStatus == "open":
+                if len(thisSpot.neighbors) < 4:
+                    thisSpot.color = YELLOW
+                    thisSpot.spotStatus = "blocked"
+
+    traceNeigbors(grid)
 
 
 def setSpot(thatSpot, thisSpot, neighborsStatus, neighborSpots):
     if neighborsStatus == "open":
-        thatSpot.status = "open"
+        thatSpot.spotStatus = "open"
         thatSpot.color = WHITE
         thisSpot.neighbors.append(thatSpot)
         neighborSpots.append(thatSpot)
     elif neighborsStatus == "blocked":
-        thatSpot.status = "blocked"
+        thatSpot.spotStatus = "blocked"
         thatSpot.color = BLACK
     return(neighborSpots)
 
@@ -146,7 +158,7 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/JR-Straat.png"):
+    if path.isfile("images/JR-StraatWW.png"):
         image = pygame.image.load("images/JR-Straat.png")
     else:
         image = None

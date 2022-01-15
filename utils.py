@@ -15,8 +15,8 @@ class Spot:
         self.col = col
         self.mapX = self.row * self.width
         self.mapY = self.col * self.width
+        self.center = (self.mapX + self.width//2, self.mapY + self.width//2)
 
-        self.location = None
         self.color = GREY
         self.spotStatus = None
         self.neighbors = []
@@ -97,6 +97,13 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
 
     return(result)
 
+def getNeigbors(grid, thisSpot):
+    upSpot = grid[thisSpot.row][thisSpot.col-1]
+    rightSpot = grid[thisSpot.row+1][thisSpot.col]
+    downSpot = grid[thisSpot.row][thisSpot.col+1]
+    leftSpot = grid[thisSpot.row-1][thisSpot.col]
+    return((upSpot, rightSpot, downSpot, leftSpot))
+
 def setSpot(thatSpot, thisSpot, neighborsStatus, neighborSpots):
     if neighborsStatus == "open":
         thatSpot.status = "open"
@@ -112,20 +119,12 @@ def setSpot(thatSpot, thisSpot, neighborsStatus, neighborSpots):
 
 def setNeigbors(grid, thisSpot, neighborsStatus):
     neighborSpots = []
+    spots = getNeigbors(grid, thisSpot)
 
-    #Direction is UP
-    upSpot = grid[thisSpot.row][thisSpot.col-1]
-    neighborSpots = setSpot(upSpot, thisSpot, neighborsStatus[0], neighborSpots)
-
-    rightSpot = grid[thisSpot.row+1][thisSpot.col]
-    neighborSpots = setSpot(rightSpot, thisSpot, neighborsStatus[1], neighborSpots)
-
-    downSpot = grid[thisSpot.row][thisSpot.col+1]
-    neighborSpots = setSpot(downSpot, thisSpot, neighborsStatus[2], neighborSpots)
-
-    leftSpot = grid[thisSpot.row-1][thisSpot.col]
-    neighborSpots = setSpot(leftSpot, thisSpot, neighborsStatus[3], neighborSpots)
-
+    neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
+    neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
+    neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)
+    neighborSpots = setSpot(spots[3], thisSpot, neighborsStatus[3], neighborSpots)
     return(neighborSpots)
 
 

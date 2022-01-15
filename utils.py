@@ -72,9 +72,14 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     down  = (thisSpot.mapX, thisSpot.mapY+width)
     left  = (thisSpot.mapX-width, thisSpot.mapY)
 
-    print("All new>>: ", up, right, down, left)
+    lUp    = (thisSpot.mapX-width, thisSpot.mapY-width)
+    rUp    = (thisSpot.mapX+width, thisSpot.mapY-width)
+    rDown  = (thisSpot.mapX+width, thisSpot.mapY+width)
+    lDown  = (thisSpot.mapX-width, thisSpot.mapY+width)
 
-    for direction in [up, right, down, left]:
+    print("All new>>: ", up, right, down, left, lUp, rUp, rDown, lDown)
+
+    for direction in [up, right, down, left, lUp, rUp, rDown, lDown]:
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
@@ -99,11 +104,16 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     return(result)
 
 def getNeigbors(grid, thisSpot):
-    upSpot = grid[thisSpot.row][thisSpot.col-1]
+    upSpot    = grid[thisSpot.row][thisSpot.col-1]
     rightSpot = grid[thisSpot.row+1][thisSpot.col]
-    downSpot = grid[thisSpot.row][thisSpot.col+1]
-    leftSpot = grid[thisSpot.row-1][thisSpot.col]
-    return((upSpot, rightSpot, downSpot, leftSpot))
+    downSpot  = grid[thisSpot.row][thisSpot.col+1]
+    leftSpot  = grid[thisSpot.row-1][thisSpot.col]
+
+    lUpSpot    = grid[thisSpot.row-1][thisSpot.col-1]
+    rUpSpot    = grid[thisSpot.row+1][thisSpot.col-1]
+    rDwnSpot   = grid[thisSpot.row+1][thisSpot.col+1]
+    lDownSpot  = grid[thisSpot.row-1][thisSpot.col+1]
+    return((upSpot, rightSpot, downSpot, leftSpot, lUpSpot, rUpSpot, rDwnSpot, lDownSpot))
 
 def traceNeigbors(grid):
     for row in range(len(grid)):
@@ -121,7 +131,7 @@ def makeBorder(grid):
         for col in range(len(grid[row])):
             thisSpot = grid[row][col]
             if thisSpot.spotStatus == "open":
-                if len(thisSpot.neighbors) < 4:
+                if len(thisSpot.neighbors) < 8:
                     thisSpot.color = YELLOW
                     thisSpot.spotStatus = "blocked"
 
@@ -145,10 +155,15 @@ def setNeigbors(grid, thisSpot, neighborsStatus):
     neighborSpots = []
     spots = getNeigbors(grid, thisSpot)
 
-    neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
-    neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
-    neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)
-    neighborSpots = setSpot(spots[3], thisSpot, neighborsStatus[3], neighborSpots)
+    for i in range(len(spots)):
+    #for i in range(4):
+       neighborSpots = setSpot(spots[i], thisSpot, neighborsStatus[i], neighborSpots) 
+
+
+    # neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
+    # neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
+    # neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)
+    # neighborSpots = setSpot(spots[3], thisSpot, neighborsStatus[3], neighborSpots)
     return(neighborSpots)
 
 
@@ -158,7 +173,7 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/JR-StraatWW.png"):
+    if path.isfile("images/JR-Straat.png"):
         image = pygame.image.load("images/JR-Straat.png")
     else:
         image = None

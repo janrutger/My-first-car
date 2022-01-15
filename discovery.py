@@ -56,7 +56,7 @@ while run and not gridReady:
                 listToDo.append(neighborSpot)          
         #print(neighbors)
         listDone.append(thisSpot)
-        #utils.showGrid(win, grid)
+        utils.showGrid(win, grid)
     else:
         print("Finished")
         gridReady = True

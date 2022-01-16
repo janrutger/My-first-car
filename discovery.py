@@ -65,7 +65,7 @@ while run and not gridReady:
         start = None
         end = None
 
-#utils.traceNeigbors(grid)
+utils.traceNeigbors(grid)
 utils.makeBorder(grid)
 
 while run and gridReady:

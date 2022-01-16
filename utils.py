@@ -77,9 +77,9 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     rDown  = (thisSpot.mapX+width, thisSpot.mapY+width)
     lDown  = (thisSpot.mapX-width, thisSpot.mapY+width)
 
-    print("All new>>: ", up, right, down, left, lUp, rUp, rDown, lDown)
+    print("All new>>: ", up, right, down, left) #, lUp, rUp, rDown, lDown)
 
-    for direction in [up, right, down, left, lUp, rUp, rDown, lDown]:
+    for direction in [up, right, down, left]: #, lUp, rUp, rDown, lDown]:
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
@@ -155,15 +155,14 @@ def setNeigbors(grid, thisSpot, neighborsStatus):
     neighborSpots = []
     spots = getNeigbors(grid, thisSpot)
 
-    for i in range(len(spots)):
-    #for i in range(4):
-       neighborSpots = setSpot(spots[i], thisSpot, neighborsStatus[i], neighborSpots) 
+    # for i in range(len(spots)):
+    #    neighborSpots = setSpot(spots[i], thisSpot, neighborsStatus[i], neighborSpots) 
 
 
-    # neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
-    # neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
-    # neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)
-    # neighborSpots = setSpot(spots[3], thisSpot, neighborsStatus[3], neighborSpots)
+    neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
+    neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
+    neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)
+    neighborSpots = setSpot(spots[3], thisSpot, neighborsStatus[3], neighborSpots)
     return(neighborSpots)
 
 

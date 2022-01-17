@@ -19,8 +19,8 @@ TURQUOISE = (64, 224, 208)
 def h(p1, p2):
 	x1, y1 = p1
 	x2, y2 = p2
-	#return distance.euclidean([x1, y1], [x2, y2])
-	return abs(x1 - x2) + abs(y1 - y2)
+	return distance.euclidean([x1, y1], [x2, y2])
+	#return abs(x1 - x2) + abs(y1 - y2)
 
 
 def reconstruct_path(came_from, current, draw):
@@ -60,8 +60,9 @@ def algorithm(draw, grid, start, end):
 			return True
 
 		for neighbor in current.neighbors:
+			weight = (abs(current.col - neighbor.col) + abs(current.row - neighbor.row))
 			#neighbor = grid[neighborCor[0]][neighborCor[1]]
-			temp_g_score = g_score[current] + 1
+			temp_g_score = g_score[current] + weight
 
 			if temp_g_score < g_score[neighbor]:
 				came_from[neighbor] = current

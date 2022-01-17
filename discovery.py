@@ -56,7 +56,7 @@ while run and not gridReady:
                 listToDo.append(neighborSpot)          
         #print(neighbors)
         listDone.append(thisSpot)
-        utils.showGrid(win, grid)
+        #utils.showGrid(win, grid)
     else:
         print("Finished")
         gridReady = True
@@ -64,8 +64,8 @@ while run and not gridReady:
         pygame.display.set_caption("A* Path Finding Algorithm")
         start = None
         end = None
+        utils.traceNeigbors(grid)
 
-utils.traceNeigbors(grid)
 utils.makeBorder(grid)
 
 while run and gridReady:

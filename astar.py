@@ -61,7 +61,6 @@ def algorithm(draw, grid, start, end):
 
 		for neighbor in current.neighbors:
 			weight = (abs(current.col - neighbor.col) + abs(current.row - neighbor.row))
-			#neighbor = grid[neighborCor[0]][neighborCor[1]]
 			temp_g_score = g_score[current] + weight
 
 			if temp_g_score < g_score[neighbor]:

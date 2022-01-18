@@ -172,8 +172,8 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/JR-StraaAAt.png"):
-        image = pygame.image.load("images/cirkels-jr.png")
+    if path.isfile("images/JR-Straatnn.png"):
+        image = pygame.image.load("images/JR-Straat.png")
     else:
         image = None
 

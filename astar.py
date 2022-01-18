@@ -24,11 +24,14 @@ def h(p1, p2):
 
 
 def reconstruct_path(came_from, current, draw):
+	route = []
+	route.append(current)
 	while current in came_from:
 		current = came_from[current]
 		current.color = PURPLE
+		route.append(current)
 		draw()
-
+	return(route)
 
 def algorithm(draw, grid, start, end):
 	count = 0
@@ -54,10 +57,10 @@ def algorithm(draw, grid, start, end):
 		open_set_hash.remove(current)
 
 		if current == end:
-			reconstruct_path(came_from, end, draw)
+			route = reconstruct_path(came_from, end, draw)
 			end.color = GREEN
 			start.color = RED
-			return True
+			return(route)
 
 		for neighbor in current.neighbors:
 			weight = (abs(current.col - neighbor.col) + abs(current.row - neighbor.row))

@@ -21,7 +21,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 WIDTH  = 700 #canvas win X-ax
 HEIGHT = 500 #canvas win Y-ax
-width  = 10  #spot
+width  = 5  #spot
 
 listToDo = []
 listDone = []
@@ -103,9 +103,40 @@ while run and gridReady:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and start and end:
                 #algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
-                astar.algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
+                route = astar.algorithm(lambda: utils.showGrid(win, grid), grid, start, end)
 
 
+from car import Car
+
+car = Car(route[0], width)
+
+win = pygame.display.set_mode((maxX,maxY))
+#win = pygame.make_surface(sceneMap)
+pygame.display.set_caption("Drive the Car")
+
+runRoute = True
+while runRoute:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            runRoute = False
+    
+    for step in reversed(route):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+        pygame.time.delay(50)
+        pygame.surfarray.blit_array(win, sceneMap)
+        ## Get the Car coordinates & Draw the car
+        car.botNextStep(step)
+        Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright
+        #print(Coordinates)
+        pygame.draw.polygon(win,(0,0,255), Coordinates, 0) #draw de car
+        pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
+        pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
+        
+        print(step)
+        pygame.display.update() #update screen
 
 pygame.quit()
 

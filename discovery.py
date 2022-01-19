@@ -21,7 +21,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 WIDTH  = 700 #canvas win X-ax
 HEIGHT = 500 #canvas win Y-ax
-width  = 5  #spot
+width  = 2  #spot
 
 listToDo = []
 listDone = []
@@ -56,7 +56,7 @@ while run and not gridReady:
                 listToDo.append(neighborSpot)          
         #print(neighbors)
         listDone.append(thisSpot)
-        #utils.showGrid(win, grid)
+        utils.showGrid(win, grid)
     else:
         print("Finished")
         gridReady = True
@@ -125,7 +125,7 @@ while runRoute:
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-        pygame.time.delay(50)
+        pygame.time.delay(250)
         pygame.surfarray.blit_array(win, sceneMap)
         ## Get the Car coordinates & Draw the car
         car.botNextStep(step)
@@ -135,7 +135,6 @@ while runRoute:
         pygame.draw.circle(win, (255,0,0), Coordinates[0], 3, 0)
         pygame.draw.circle(win, (0,255,0), Coordinates[1], 3, 0)
         
-        print(step)
         pygame.display.update() #update screen
 
 pygame.quit()

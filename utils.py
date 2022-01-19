@@ -77,7 +77,7 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     rDown  = (thisSpot.mapX+width, thisSpot.mapY+width)
     lDown  = (thisSpot.mapX-width, thisSpot.mapY+width)
 
-    print("All new>>: ", up, right, down, left) #, lUp, rUp, rDown, lDown)
+    #print("All new>>: ", up, right, down, left) #, lUp, rUp, rDown, lDown)
 
     for direction in [up, right, down, left]: #, lUp, rUp, rDown, lDown]:
         white = sceneMap[direction] == WHITE
@@ -172,7 +172,7 @@ def makeScene(fileName, maxX, maxY):
     win = pygame.display.set_mode((maxX,maxY))
     pygame.display.set_caption("Create scenemap")
 
-    if path.isfile("images/JR-Straat.png"):
+    if path.isfile("images/JR-StraatXX.png"):
         image = pygame.image.load("images/JR-Straat.png")
     else:
         image = None

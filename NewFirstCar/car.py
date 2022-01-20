@@ -13,8 +13,6 @@ class  Car:
         self.botNewCoordinates()
 
     def botNewCoordinates(self):
-        #X = 0
-        #Y = 1
         rads = math.radians((self.botAngle-90)%360)
         self.frontLeft   = (int(self.botCenter[X] + (self.botWidht) * math.cos(rads)),  int(self.botCenter[Y] + (self.botWidht) * math.sin(rads)))
         rads = math.radians((self.botAngle+90)%360)

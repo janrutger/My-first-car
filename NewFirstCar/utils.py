@@ -75,19 +75,10 @@ def findNeigborsStatus(thisSpot, sceneMap, maxX, maxY):
     down  = (thisSpot.mapX, thisSpot.mapY+width)
     left  = (thisSpot.mapX-width, thisSpot.mapY)
 
-    lUp    = (thisSpot.mapX-width, thisSpot.mapY-width)
-    rUp    = (thisSpot.mapX+width, thisSpot.mapY-width)
-    rDown  = (thisSpot.mapX+width, thisSpot.mapY+width)
-    lDown  = (thisSpot.mapX-width, thisSpot.mapY+width)
-
-    #print("All new>>: ", up, right, down, left) #, lUp, rUp, rDown, lDown)
-
-    for direction in [up, right, down, left]: #, lUp, rUp, rDown, lDown]:
+    for direction in [up, right, down, left]: 
         white = sceneMap[direction] == WHITE
         black = sceneMap[direction] == BLACK
 
-        #if white.all():
-        #    result.append("open")
         if direction[X] - width < 0 or direction[X] + width >= maxX or direction[Y] - width < 0 or direction[Y] + width  >= maxY:
                 result.append("blocked")
         elif white.all():
@@ -160,8 +151,6 @@ def setNeigbors(grid, thisSpot, neighborsStatus):
 
     # for i in range(len(spots)):
     #    neighborSpots = setSpot(spots[i], thisSpot, neighborsStatus[i], neighborSpots) 
-
-
     neighborSpots = setSpot(spots[0], thisSpot, neighborsStatus[0], neighborSpots)
     neighborSpots = setSpot(spots[1], thisSpot, neighborsStatus[1], neighborSpots)
     neighborSpots = setSpot(spots[2], thisSpot, neighborsStatus[2], neighborSpots)

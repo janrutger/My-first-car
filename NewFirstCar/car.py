@@ -13,6 +13,8 @@ class  Car:
         self.botNewCoordinates()
 
     def botNewCoordinates(self):
+        #X = 0
+        #Y = 1
         rads = math.radians((self.botAngle-90)%360)
         self.frontLeft   = (int(self.botCenter[X] + (self.botWidht) * math.cos(rads)),  int(self.botCenter[Y] + (self.botWidht) * math.sin(rads)))
         rads = math.radians((self.botAngle+90)%360)
@@ -34,7 +36,8 @@ class  Car:
     def botNextStepSmooth(self, nextNewStep):
         NewX = (self.botCenter[X] + nextNewStep.center[X])//2
         NewY = (self.botCenter[Y] + nextNewStep.center[Y])//2
-    
-        self.botAngle = (math.degrees(math.atan2(NewY-self.botCenter[Y], NewX-self.botCenter[X]))+self.botAngle)/2
+        
+        self.botAngle = math.degrees(math.atan2(NewY-self.botCenter[Y], NewX-self.botCenter[X]))
+        #print(self.botAngle)
         self.botCenter = (NewX, NewY)
         self.botNewCoordinates()

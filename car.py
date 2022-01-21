@@ -36,7 +36,8 @@ class  Car:
     def botNextStepSmooth(self, nextNewStep):
         NewX = (self.botCenter[X] + nextNewStep.center[X])//2
         NewY = (self.botCenter[Y] + nextNewStep.center[Y])//2
-    
-        self.botAngle = (math.degrees(math.atan2(NewY-self.botCenter[Y], NewX-self.botCenter[X]))+self.botAngle)/2
+        
+        self.botAngle = math.degrees(math.atan2(NewY-self.botCenter[Y], NewX-self.botCenter[X]))
+        #print(self.botAngle)
         self.botCenter = (NewX, NewY)
         self.botNewCoordinates()

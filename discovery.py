@@ -21,7 +21,7 @@ sceneMap = utils.makeScene(None, maxX, maxY)
 
 WIDTH  = 700 #canvas win X-ax
 HEIGHT = 500 #canvas win Y-ax
-width  = 5  #spot
+width  = 5   #spot
 
 listToDo = []
 listDone = []
@@ -130,6 +130,7 @@ while runRoute:
         pygame.surfarray.blit_array(win, sceneMap)
 
         ## Get the Car coordinates & Draw the car
+
         #car.botNextStepNormal(route[index])
         car.botNextStepSmooth(route[index+1])
         Coordinates = car.botCoordinates() # 0=frontleft, 1=frontright

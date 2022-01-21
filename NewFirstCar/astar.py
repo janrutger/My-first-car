@@ -2,6 +2,8 @@ import pygame
 from queue import PriorityQueue
 from scipy.spatial import distance
 
+
+
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 255, 0)
@@ -39,6 +41,7 @@ def algorithm(draw, grid, start, end):
 	g_score = {spot: float("inf") for row in grid for spot in row}
 	g_score[start] = 0
 	f_score = {spot: float("inf") for row in grid for spot in row}
+	#f_score[start] = h(start.get_pos(), end.get_pos())
 	p1 = (start.row, start.col)
 	p2 = (end.row, end.col)
 	f_score[start] = h(p1, p2)

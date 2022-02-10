@@ -1,5 +1,5 @@
 # My-first-car
-kijken wat ik met een ROBOT car en Machine Learning kan doen op een Raspberry Pi model 4B (4Gig) Buster 32 bits.
+Machine Learning kan doen op een Raspberry Pi model 4B (4Gig) Buster 32 bits.
 Voor de robot Simulator (default PYgame versie van de distributie)
 
 Playground.py (main), robot.py & brain.py
@@ -18,6 +18,6 @@ pandas                   1.3.4
 scipy                    1.4.1 (sklearn?)
 
 
-
+en a-star route algoritme
 
 
